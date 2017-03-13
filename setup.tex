@@ -1,0 +1,162 @@
+% IMPORTANTE
+% Para poner barrabaja en una url hay que cambiar '_' por '\textunderscore'
+
+%========================================================================================
+% PACKAGES
+%========================================================================================
+
+\usepackage[spanish]{babel} % For spanish texts
+\usepackage[utf8]{inputenc} % To use accent marks directly
+\usepackage{graphicx} % For graphics
+\usepackage{cite} % For references
+\usepackage{svg} % For vectorial graphics
+\usepackage{float} % To modify the pisotion of pictures
+\usepackage{listings} % For code
+\usepackage{times} % For dates
+\usepackage{xcolor} % For colors (better than 'color' package)
+\usepackage[pdftex,
+			pdfauthor={Ander Granado Masid},
+			pdftitle={},
+			pdfsubject={},
+			pdfkeywords={},
+			pdfproducer={Latex},
+			pdfcreator={pdflatex}]{hyperref}  % For links and  PDF metadata
+\usepackage{url}
+\usepackage[Bjornstrup]{fncychap} % For better chapter titles
+\usepackage{fancyhdr} % For pages header and footer
+\usepackage{titling} % For use doc info in other parts of it 
+\usepackage{caption} % To add campions to images or tables
+\usepackage{minted} % Better syntax highlighting that listings
+\usepackage{comment} % To make multiple line comments
+
+%========================================================================================
+% REDEFINITIONS THAT I USE BUT IDK WTF THEY ARE DOING (CARE WITH THIS!)
+%========================================================================================
+
+\input{./redefs}
+
+%========================================================================================
+% STYLE
+%========================================================================================
+
+%----------------------------------------------------------------------------------------
+% PATH FOR THE PICTURES
+%----------------------------------------------------------------------------------------
+
+\graphicspath{{./figuras/}}
+
+%----------------------------------------------------------------------------------------
+% FIX FOR THE LIST OF FIGURES
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1em}{3.2em}}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+% TYPOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\renewcommand{\familydefault}{\rmdefault} % Canges typography for ALL document
+\setlength{\parskip}{3mm} % Defines the lenght between paragraphs (by default == 0)
+\renewcommand{\baselinestretch}{1.3}
+
+%----------------------------------------------------------------------------------------
+% COLORS FOR PART AND CHAPTER TITLES
+%----------------------------------------------------------------------------------------
+
+\definecolor{TitlesLight}{RGB}{112, 183, 172}
+\definecolor{TitlesDark}{RGB}{28, 85, 76}
+
+\colorlet{partbgcolor}{TitlesLight}% shaded background color for parts
+\colorlet{partnumcolor}{TitlesDark}% color for numbers in parts
+
+%----------------------------------------------------------------------------------------
+% HEADERS AND FOOTERS
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RE,LO]{{\small \leftmark}}
+\fancyhead[LE,RO]{\thepage}
+\fancyfoot[RE,LO]{\theauthor}
+\fancyfoot[LE,RO]{\thepage}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+%----------------------------------------------------------------------------------------
+% LINKS (All black)
+%----------------------------------------------------------------------------------------
+
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%----------------------------------------------------------------------------------------
+% CONTENTS NUMBERING 
+%----------------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\renewcommand\thechapter{\arabic{chapter}}
+
+%----------------------------------------------------------------------------------------
+% CODE
+%----------------------------------------------------------------------------------------
+
+% Color for commands (sh, bash, ...) (with lstlisting)
+\definecolor{gray95}{gray}{.95}
+\definecolor{gray85}{gray}{.80}
+\definecolor{gray45}{gray}{.45}
+\definecolor{myturquoise}{RGB}{0, 128, 128}
+\definecolor{mypink}{RGB}{177,48,112}
+\definecolor{myblue}{RGB}{56,133,231}
+
+\lstset{ 
+	frame=Ltb,
+	framerule=0pt,
+	aboveskip=0.5cm,
+	framextopmargin=3pt,
+	framexbottommargin=3pt,
+	framexleftmargin=0.2cm,
+	framesep=0pt,
+	rulesep=2.0pt,
+	backgroundcolor=\color{gray95},
+	rulesepcolor=\color{black},
+	%
+	stringstyle=\ttfamily,
+	showstringspaces = false,
+	basicstyle=\small\ttfamily,
+	commentstyle=\color{gray45},
+	keywordstyle=\bfseries,
+	%
+	numbers=left,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	numberfirstline = false,
+	breaklines=true,
+}
+
+% Minimize listings fragmentation
+%\lstnewenvironment{listing}[1][]
+%{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+% Code style for terminal
+\lstdefinelanguage{none}{}
+\lstdefinestyle{terminal}{
+	language=none,
+	breaklines=true,
+	basicstyle=\footnotesize\bf\ttfamily,
+	backgroundcolor=\color{gray85},
+	rulesepcolor=\color{myturquoise},
+	numbers=none,
+}
+
+% For the rest of the code (with minted) (minted have better syntax highlighting than lstlisting for code)
+\usemintedstyle{borland}

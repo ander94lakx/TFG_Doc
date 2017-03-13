@@ -1,0 +1,56 @@
+
+\documentclass[a4paper,12pt,twoside]{scrbook}
+
+%----------------------------------------------------------------------------------------
+% PACKAGES AND STYLE
+%----------------------------------------------------------------------------------------
+
+\include{setup}
+
+%----------------------------------------------------------------------------------------
+% DOCUMENT INFO
+%----------------------------------------------------------------------------------------
+
+\title{Título Provisional}
+\author{Ander Granado Masid}
+\date{\today}
+
+%========================================================================================
+% DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+\frontmatter
+
+\include{cover} % Custom cover
+\chapter{Agradecimientos}
+\tableofcontents
+\listoffigures
+\chapter[Resumen]{Resumen y Organización de la memoria}
+
+
+%----------------------------------------------------------------------------------------
+
+\mainmatter
+
+\part{Alcance del Trabajo}
+\include{tex/1-Alcance/descripcion}
+\include{tex/1-Alcance/viabilidad}
+
+\part{Conceptos, tecnologías y herramientas}
+
+\part{Desarrollo del Trabajo}
+
+\part{Análisis y conclusiones del Trabajo}
+
+\part{Apéndices}
+
+%----------------------------------------------------------------------------------------
+
+\backmatter
+
+\bibliographystyle{plainnat}
+\bibliography{biblio}
+
+\end{document}
+%========================================================================================

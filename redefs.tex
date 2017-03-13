@@ -1,0 +1,75 @@
+%----------------------------------------------------------------------------------------
+% REDEF 1: FOR PART TITLES
+% (http://tex.stackexchange.com/questions/36902/questions-about-bjornstrup)
+%----------------------------------------------------------------------------------------
+
+\colorlet{partbgcolor}{gray!30}% shaded background color for parts
+\colorlet{partnumcolor}{gray}% color for numbers in parts
+\colorlet{chapbgcolor}{gray!20}% shaded background color for chapters
+\colorlet{chapnumcolor}{gray}% color for numbers in chapters
+
+\renewcommand*\partformat{%
+  \fontsize{76}{80}\usefont{T1}{pzc}{m}{n}\selectfont%
+  \hfill\textcolor{partnumcolor}{\thepart}}
+
+\makeatletter
+\renewcommand*{\@part}{}
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+    \@maybeautodot\thepart%
+    \addparttocentry{\thepart}{#1}%
+  \else
+    \addparttocentry{}{#1}%
+  \fi
+  \begingroup
+    \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+    \raggedpart
+    \interlinepenalty \@M
+    \normalfont\sectfont\nobreak
+    \setlength\fboxsep{0pt}
+    \colorbox{partbgcolor}{\rule{0pt}{40pt}%
+    \makebox[\linewidth]{%
+    \begin{minipage}{\dimexpr\linewidth+20pt\relax}
+      \ifnum \c@secnumdepth >-2\relax
+        \vskip-25pt
+        \size@partnumber{\partformat}%
+      \fi      %
+      \vskip\baselineskip
+      \hspace*{\dimexpr\myhi+10pt\relax}%
+      \parbox{\dimexpr\linewidth-2\myhi-20pt\relax}{\raggedleft\LARGE#2\strut}%
+      \hspace*{\myhi}\par\medskip%
+    \end{minipage}%
+      }%
+    }%
+    \partmark{#1}\par
+  \endgroup
+  \@endpart
+}
+
+\renewcommand\DOCH{%
+  \settowidth{\py}{\CNoV\thechapter}
+  \addtolength{\py}{-10pt}
+  \fboxsep=0pt%
+  \colorbox{chapbgcolor}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}%
+  \kern-\py\raise20pt%
+  \hbox{\color{chapnumcolor}\CNoV\thechapter}\\%
+}
+
+\renewcommand\DOTI[1]{%
+  \nointerlineskip\raggedright%
+  \fboxsep=\myhi%
+  \vskip-1ex%
+  \colorbox{chapbgcolor}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
+  \vskip 40pt%
+}
+
+\renewcommand\DOTIS[1]{%
+  \fboxsep=0pt
+  \colorbox{chapbgcolor}{\rule{0pt}{40pt}\parbox[b]{\textwidth}{\hfill}}\\%
+  \nointerlineskip\raggedright%
+  \fboxsep=\myhi%
+  \colorbox{chapbgcolor}{\parbox[t]{\mylen}{\CTV\FmTi{#1}}}\par\nobreak%
+  \vskip 40pt%
+ }
+\makeatother
