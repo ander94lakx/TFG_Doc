@@ -28,6 +28,8 @@
 \usepackage{caption} % To add campions to images or tables
 \usepackage{minted} % Better syntax highlighting that listings
 \usepackage{comment} % To make multiple line comments
+\usepackage{enumitem} % For add custom enumeration items
+\usepackage{framed} % For frames for the tasks
 
 %==============================================================================
 % REDEFINITIONS THAT I USE BUT IDK WTF THEY ARE DOING (CARE WITH THIS!)
@@ -105,6 +107,32 @@
 \setcounter{secnumdepth}{3}
 
 \renewcommand\thechapter{\arabic{chapter}}
+
+%------------------------------------------------------------------------------
+% ORDERED LISTS NUMBERING
+%------------------------------------------------------------------------------
+
+\newlist{numbered}{enumerate}{4}
+\setlist[numbered,1]{label=\textbf{\arabic*.}}
+\setlist[numbered,2]{label=\textbf{\arabic{numberedi}.\arabic*}}
+\setlist[numbered,3]{label=\textbf{\arabic{numberedi}.\arabic{numberedii}.\arabic*}}
+\setlist[numbered,4]{label=\textbf{\arabic{numberedi}.\arabic{numberedii}.\arabic{numberediii}.\arabic*}}
+
+%------------------------------------------------------------------------------
+% FRAMES FOR TASKS
+%------------------------------------------------------------------------------
+
+\newcommand{\taskframe}[4]{
+	\begin{framed}
+		\textbf{Número:} #1.
+		
+		\textbf{Nombre:} #2.
+		
+		\textbf{Descripción:} #3.
+		
+		\textbf{Trabajo estimado:} #4 {horas.}
+	\end{framed}	
+}
 
 %------------------------------------------------------------------------------
 % CODE
