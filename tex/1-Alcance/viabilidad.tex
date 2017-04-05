@@ -1,26 +1,69 @@
 \chapter{Viabilidad}
-{\color{red} Explicar para que sirve este punto y lo mas importante, explicar la separación en las 2 fases y el por qué de ésta.}
+Este capítulo tiene como objetivo realizar, en base a los objetivos marcados en el capítulo anterior, elaborar un análisis de viabilidad del proyecto, analizando las diferentes tareas que contiene, calculando los correspondientes gastos y sus inherentes riesgos, que pueden afectar, atrasando o incluso impidiendo, la realización del proyecto.
 
 \section{Requisitos funcionales del trabajo}
-{\color{red} Poner los RF. Puntos cortos. Nada de párrafos. Como mucho 3 lineas por RF. No tienen que ser específicos, pero tiene que ser cosas que se cumplan si o si. Se pueden hacer a nivel general, si distinguir entre fases.}
+Los requisitos funcionales de la aplicación (RF a partir de ahora) se elaboran en base a los objetivos descritos y son los siguientes:
+
+\begin{itemize}
+	\item Elaborar un estado del arte que analice el campo de la seguridad informática, sus aplicaciones y analice el área del pentesting
+	\item Elaborar una aplicación que permita obtener información sobre redes y nodos de la red
+	\item Integrar correctamente herramientas de terceros para lograr que la aplicación resulte lo mas escalable posible.
+	\item Aplicar principios sobre experiencia de usuario (UX) y sobre el diseño de interfaces gráficas (GUI) para que la aplicación sea lo mas sencilla y cómoda de usar
+\end{itemize}
 
 %------------------------------------------------------------------------------
 
 \section{Planificación del tiempo}
 
 \subsection[EDT]{Estructura de Descomposición del Trabajo}
-{\color{red} El EDT. Se pone la separación en 2 fases, y en cada fases se puede separa por diferentes secciones. Poner por separado el EDT de la fase 1 y el de la Fase 2.}
+El EDT, o Estructura del Desglose del Trabajo, es un sistema jerárquico que permite organizar las difernetes tareas de un proyecto. Es una técnica ámpliamnente usada para gestionar todo tipo de proyectos, especialmente proyectos de software.
 
-\subsubsection{Fase 1}
+A la hora de planificar el tiempo, se ha tenido en cuenta un enfoque en dos fases, a las cuales denominaremos Fase 1 y Fase 2. Esto es debido al carácter del proyecto. Por una parte, para elaborar la aplicación anteriormente mencionada, resulta fundamental realizar un estudio sobre el campo del la seguridad informática, mas concretamente sobre el área del pentesting, para poder llegar a encontrar las mejores herramientas y técnicas que permitan desarrollarla. Este estudio, bien desglosado y fundamentado, llevara a la obtención de un elaborado estado del arte, que sera el principal objetivo de la Fase 1. Además, dicha fase contiene un periodo de aprendizaje y familiarización con diversos conceptos y tecnologías, que también quedaran reflejados.
+
+En la Fase 2, en función de lo aprendido en la Fase 1, se elaborará la aplicación en base a los criterios de implementar diversas utilidades junto a un experiencia de usuario (UX) óptima, que vendrá acompañada de un buen diseño de una interfaz gráfica (GUI).
+
+El EDT completo quedaría tal y como se muestra en la figura \ref{fig:edt}.
+
+
+
+\begin{landscape}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[height=150px]{TFG_EDT}
+		\caption{EDT completo}
+		\label{fig:edt}
+	\end{figure}
+	
+	\clearpage
+	
+	\subsubsection{Fase 1}
+	El EDT para la Fase 1 quedaría como se muestra en la figura \ref{fig:edt1}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[height=150px]{TFG_EDT_FASE_1}
+		\caption{EDT de la Fase 1}
+		\label{fig:edt1}
+	\end{figure}
+
+\end{landscape}
 
 \subsubsection{Fase 2}
+El EDT para la Fase 2 quedaría como se muestra en las figura \ref{fig:edt2}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{TFG_EDT_FASE_2}
+	\caption{EDT de la Fase 2}
+	\label{fig:edt2}
+\end{figure}
 
 \subsection{Agenda del proyecto}
 {\color{red} Poner el horario de trabajo, festivos y todo este tema que sirva para elaborar los cronogramas y determinar el tiempo del proyecto.}
 
 \subsection{Tareas}
-{\color{red} Todas las tareas tanto de la Fase 1 como de la Fase 2, primero en lista y después como en cuadritos con descripción y tal.}
-
+El EDT completo de tareas, al que se añaden la fase inicial de objetivos del proyecto, y toda la fase final de elaboración de la memoria, presentación y la defensa quedaría de la siguiente manera.
 \begin{numbered}
 	\setcounter{numberedi}{-1} %Para empeza a contar desde 0
 	
@@ -254,27 +297,50 @@ A continuación se explica mediante una breve definición en que consiste cada t
 	{15}
 
 \subsection{Entregables}
-{\color{red} Entregables durante la Fase 1, si hay (en este caso seria solo la parte de la memoria).}
 
 \subsubsection{Fase 1}
 \subsubsection{Fase 2}
 
-\subsection{Cronograma}
-{\color{red} Distribución de tareas de la Fase 1 en un cronograma generado con Project o una herramienta similar.}
 
-%------------------------------------------------------------------------------
-
-\section{Fase 2}
-{\color{red} Parte de la aplicación.}
-
-\subsection{Tareas}
-{\color{red} Todas las tareas de la Fase 2, primero en lista y después como en cuadritos con descripción y tal.}
-
-\subsection{Entregables}
-{\color{red} Entregables durante la Fase 2, si hay (aplicación + la otra parte de la memoria que sirve como documentación de la aplicación y así).}
 
 \subsection{Cronograma}
-{\color{red} Distribución de tareas de la Fase 2 en un cronograma generado con Project o una herramienta similar.}
+El cronograma completo, con las dos fases, como se muestra en las figuras \ref{fig:gantt0}, \ref{fig:gantt1}, \ref{fig:gantt2} y \ref{fig:gantt3} respectivamente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{TFG_GANTT_FASE_0}
+	\caption{Cronograma de la fase inicial}
+	\label{fig:gantt0}
+\end{figure}
+
+\begin{landscape}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=250px]{TFG_GANTT_FASE_1}
+	\caption{Cronograma de la Fase 1}
+	\label{fig:gantt1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=200px]{TFG_GANTT_FASE_2}
+	\caption{Cronograma de la Fase 2}
+	\label{fig:gantt2}
+\end{figure}
+
+\end{landscape}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{TFG_GANTT_FASE_3}
+	\caption{Cronograma de la elaboración de la memoria}
+	\label{fig:gantt3}
+\end{figure}
+
+
+
+
 
 %------------------------------------------------------------------------------
 
