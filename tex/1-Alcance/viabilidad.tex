@@ -11,12 +11,14 @@ Los requisitos funcionales de la aplicación (RF a partir de ahora) se elaboran 
 	\item Aplicar principios sobre experiencia de usuario (UX) y sobre el diseño de interfaces gráficas (GUI) para que la aplicación sea lo mas sencilla y cómoda de usar
 \end{itemize}
 
+
 %------------------------------------------------------------------------------
+
 
 \section{Planificación del tiempo}
 
 \subsection[EDT]{Estructura de Descomposición del Trabajo}
-El EDT, o Estructura del Desglose del Trabajo, es un sistema jerárquico que permite organizar las difernetes tareas de un proyecto. Es una técnica ámpliamnente usada para gestionar todo tipo de proyectos, especialmente proyectos de software.
+El EDT, o Estructura del Desglose del Trabajo, es un sistema jerárquico que permite organizar las diferentes tareas de un proyecto. Es una técnica ámpliamente usada para gestionar todo tipo de proyectos, especialmente proyectos de software.
 
 A la hora de planificar el tiempo, se ha tenido en cuenta un enfoque en dos fases, a las cuales denominaremos Fase 1 y Fase 2. Esto es debido al carácter del proyecto. Por una parte, para elaborar la aplicación anteriormente mencionada, resulta fundamental realizar un estudio sobre el campo del la seguridad informática, mas concretamente sobre el área del pentesting, para poder llegar a encontrar las mejores herramientas y técnicas que permitan desarrollarla. Este estudio, bien desglosado y fundamentado, llevara a la obtención de un elaborado estado del arte, que sera el principal objetivo de la Fase 1. Además, dicha fase contiene un periodo de aprendizaje y familiarización con diversos conceptos y tecnologías, que también quedaran reflejados.
 
@@ -107,7 +109,7 @@ En base a dicho calendario, la fecha estimada de finalización del proyecto es d
 \subsection{Tareas}
 El EDT completo de tareas, al que se añaden la fase inicial de objetivos del proyecto, y toda la fase final de elaboración de la memoria, presentación y la defensa quedaría de la siguiente manera.
 \begin{numbered}
-	\setcounter{numberedi}{-1} %Para empeza a contar desde 0
+	\setcounter{numberedi}{-1} %Para empezar a contar desde 0
 	
 	\item Análisis del proyecto
 	\begin{numbered}
@@ -120,7 +122,7 @@ El EDT completo de tareas, al que se añaden la fase inicial de objetivos del pr
 		
 		\item Formación
 		\begin{numbered}
-			\item Formación seguridad informatica
+			\item Formación seguridad informática
 			\item Formación Pentesting
 			\begin{numbered}
 				\item Formación Teórica
@@ -129,16 +131,16 @@ El EDT completo de tareas, al que se añaden la fase inicial de objetivos del pr
 			\item Formación Android
 			\begin{numbered}
 				\item Formación Diseño de GUI
-				\item Fornacion Java, Gradle, ...
+				\item Formación Java, Gradle, ...
 			\end{numbered}
 			\item Formación Git
-			\item Formacion Latex
+			\item Formación \LaTeX
 		\end{numbered}
 		
 		\item Elaboración del estado del arte
 		\begin{numbered}
 			\item Evaluar estado de la profesión
-			\item Evaluar diferentes areas y aplicaciones
+			\item Evaluar diferentes áreas y aplicaciones
 			\item Documentar estado del arte
 		\end{numbered}
 		
@@ -155,16 +157,16 @@ El EDT completo de tareas, al que se añaden la fase inicial de objetivos del pr
 		\item Preparación del entorno de trabajo
 		\begin{numbered}
 			\item Instalación de herramientas
-			\item Configuracion de herramientas
+			\item Configuración de herramientas
 		\end{numbered}
 		
 		\item Desarrollo de la aplicación
 		\begin{numbered}
 			\item Diseño de la GUI
-			\item Implementacion de la apicación
+			\item Implementación de la aplicación
 			\begin{numbered}
 				\item Programación de herramientas básicas
-				\item Integración de Nmap
+				\item Integración de NMap
 				\item Programación de parser de elementos
 				\item Enlazado de datos con la GUI
 			\end{numbered}
@@ -229,7 +231,7 @@ A continuación se explica mediante una breve definición en que consiste cada t
 	{5}
 \taskframe
 	{1.1.5}
-	{Formación Latex}
+	{Formación \LaTeX}
 	{Aprender diferentes conceptos de \LaTeX para elaborar tanto el estado del arte como el propio informe de la manera mas clara y elegante posible}
 	{5}
 \taskframe
@@ -284,7 +286,7 @@ A continuación se explica mediante una breve definición en que consiste cada t
 	{10}
 \taskframe
 	{2.2.2.2}
-	{Integración de Nmap}
+	{Integración de NMap}
 	{Integrar el núcleo de NMap en la aplicación para poder hacer uso de toda su funcionalidad}
 	{10}
 \taskframe
@@ -346,8 +348,6 @@ El entregable de la Fase 1 consistirá en un estado del arte redactado sobre el 
 \subsubsection{Fase 2}
 El entregable de la Fase 1 consistirá en una aplicación elaborara, que sirva como herramienta para el escaneo de redes informáticas. La aplicación, elaborada para Android, esta correctamente empaquetada, con los posible fallos corregidos y además dispondrá de una GUI sencilla de usar.
 
-
-
 \subsection{Cronograma}
 El cronograma completo, con las dos fases, como se muestra en las figuras \ref{fig:gantt0}, \ref{fig:gantt1}, \ref{fig:gantt2} y \ref{fig:gantt3} respectivamente.
 
@@ -385,18 +385,55 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 
 
 
-
-
 %------------------------------------------------------------------------------
 
+
 \section{Gestión de costos}
-{\color{red} Poner los recursos que se necesitan.}
+A la hora de elaborar un análisis de costos, con el objetivo de obtener un presupuesto, primero es necesario identificar todos los recursos que influyen en ese presupuesto. Por una parte, tendremos lo recursos de trabajo, se decir empelados, y por otra parte los recursos materiales, tanto te software como de hardware. En la figura \ref{fig:recursos} se muestran tanto los recursos de trabajo como los recursos materiales de hardware.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{TFG_RECURSOS}
+	\caption{Recursos de trabajo y materiales}
+	\label{fig:recursos}
+\end{figure}
+
+Por otra parte, en la tabla \ref{table:software} se muestra los recursos materiales de software utilizados.
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ |l|r| } 
 		\hline
-		Concepto & Coste \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Coste} \\
+		\hline
+		Windows 10 		& 135,00 \euro \cite{precio-win10}		\\
+		Project 2016 	& 1.369,00 \euro \cite{precio-project}	\\
+		WBS Chart Pro 	& 187,50 \euro \cite{precio-wbs}		\\
+		Ubuntu 16.04 	& 0,00 \euro							\\
+		TeX Studio 		& 0,00 \euro							\\
+		Android Studio 	& 0,00 \euro							\\
+		NMap 			& 0,00 \euro							\\
+		Git 			& 0,00 \euro							\\
+		GitHub 			& 0,00 \euro							\\
+		\hline
+	\end{tabular}
+	\caption{Recursos materiales (software)}
+	\label{table:software}
+\end{table}
+
+
+\subsection{Presupuesto}
+El análisis de costes del proyecto se refleja en toda la información que aparecen entre la tabla  \ref{table:recursos-trabajo} y la \ref{table:total-presupuesto}. Para ello se tienen en cuanta varios puntos. El primero, se tiene en cuenta un salario base de 14 \euro/h, correspondiente un salario estándar de un analista programador.
+Para los recursos materiales, se tiene en cuenta un costo por uso de 1,50 \euro. Estos costos por uso vienen dados por el gasto que generan debido al consumo energético, internet y otro tipo de gastos derivados de su utilización. Por otra parte se realiza una separación para los recursos de software, entre los que se incluye el propio Microsoft Project, software usado para la realización de todo el análisis de viabilidad y la gestión del proyecto.
+Para el cálculo de las amortizaciones se considera un tiempo de amortización de 3 años, el cual traducido en horas vendría a ser 4800 horas ($3\ a\tilde{n}os\ *\ 200\ d\acute{i}as\ laborables\ *\ 8\ horas\ =\ 4800\ horas$).
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |l|r| } 
+		\hline
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Coste} \\
 		\hline
 		Ander Granado & 14,00 \euro/h \\
 		\hline
@@ -409,10 +446,11 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 	\centering
 	\begin{tabular}{ |l|r| } 
 		\hline
-		Concepto & Coste \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Coste} \\
 		\hline
-		Ordenador portátil & 700,00 \euro \\
-		BQ Aquaris M5 & 250,00 \euro \\
+		Ordenador portátil 	& 700,00 \euro \\
+		BQ Aquaris M5 		& 250,00 \euro \\
 		\hline
 	\end{tabular}
 	\caption{Recursos materiales (hardware)}
@@ -423,17 +461,19 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 	\centering
 	\begin{tabular}{ |l|r|r| } 
 		\hline
-		Concepto & Coste & Numero de licencias \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Coste} & 
+				\multicolumn{1}{|c|}{Numero de licencias} \\
 		\hline
-		Windows 10 & 135,00 \euro \cite{precio-win10} & 1 \\
-		Project 2016 & 1369,00 \euro \cite{precio-project} & 1 \\
-		WBS Chart Pro & 187,50 \euro \cite{precio-wbs} & 1 \\
-		Ubuntu 16.04 & 0,00 \euro & 1 \\
-		TeX Studio & 0,00 \euro & 1 \\
-		Android Studio & 0,00 \euro & 1 \\
-		NMap & 0,00 \euro & 1 \\
-		Git & 0,00 \euro & 1 \\
-		GitHub & 0,00 \euro & 1 \\
+		Windows 10 		& 135,00 \euro \cite{precio-win10} 		& 1 \\
+		Project 2016 	& 1369,00 \euro \cite{precio-project} 	& 1 \\
+		WBS Chart Pro 	& 187,50 \euro \cite{precio-wbs} 		& 1 \\
+		Ubuntu 16.04 	& 0,00 \euro 							& 1 \\
+		TeX Studio 		& 0,00 \euro							& 1 \\
+		Android Studio 	& 0,00 \euro 							& 1 \\
+		NMap 			& 0,00 \euro 							& 1 \\
+		Git 			& 0,00 \euro 							& 1 \\
+		GitHub 			& 0,00 \euro 							& 1 \\
 		\hline
 	\end{tabular}
 	\caption{Recursos materiales (software)}
@@ -444,7 +484,12 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 	\centering
 	\begin{tabular}{ |l|r|r|r|r|r| } 
 		\hline
-		Concepto & Trabajo (h) & Trabajo horas extra & Coste & Coste horas extra & Importe \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Trabajo (h)} & 
+				\multicolumn{1}{|c|}{Trabajo horas extra} & 
+					\multicolumn{1}{|c|}{Coste} & 
+						\multicolumn{1}{|c|}{Coste horas extra} & 
+							\multicolumn{1}{|c|}{Importe} \\
 		\hline
 		Ander Granado & 285 & 0 & 14,00 \euro/h & 0 & 4.044,00 \euro \\
 		\hline
@@ -457,12 +502,15 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 	\centering
 	\begin{tabular}{ |l|r|r|r| } 
 		\hline
-		Concepto & Unidades & Coste & Importe \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Unidades} & 
+				\multicolumn{1}{|c|}{Coste} & 
+					\multicolumn{1}{|c|}{Importe} \\
 		\hline
-		Ordenador portátil & 1 & 1,50 \euro/uso & 29 x 1,50 \euro \space= 43,50 \euro \\
-		BQ Aquaris M5 & 1 & 1,50 \euro/uso & 7 x 1,50 \euro \space= 10,50 \euro \\
+		Ordenador portátil 	& 1 & 1,50 \euro/uso & 29 x 1,50 \euro \space= 43,50 \euro	\\
+		BQ Aquaris M5 		& 1 & 1,50 \euro/uso & 7 x 1,50 \euro \space= 10,50 \euro	\\
 		\hline
-		TOTAL & & & 54,00 \euro\\ 
+		\multicolumn{3}{|l}{TOTAL} & \multicolumn{1}{r|}{54,00 \euro} \\ 
 		\hline
 	\end{tabular}
 	\caption{Costo de recursos materiales}
@@ -473,19 +521,26 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 	\centering
 	\begin{tabular}{ |l|r|r|r|r|r| } 
 		\hline
-		Concepto & Coste unitario & T. de amortización & C. U. amortización & T. de uso & Importe \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Coste unitario} & 
+				\multicolumn{1}{|c|}{T. de amortización} & 
+					\multicolumn{1}{|c|}{C. U. amortización} & 
+						\multicolumn{1}{|c|}{T. de uso} & 
+							\multicolumn{1}{|c|}{Importe} \\
 		\hline
-		Ordenador portátil & 700,00 \euro & 4800 horas & & & \\
-		BQ Aquaris M5 & 250,00 \euro & 4800 horas & & & \\
-		Windows 10 & 135,00 \euro & 4800 horas & & & \\
-		Microsoft Project 2016 & 1369,00 \euro & 4800 horas & & & \\
-		WBS Chart Pro & 187,50 \euro & 4800 horas & & & \\
-		Ubuntu 16.04 & 0,00 \euro & 4800 horas & & & \\
-		TeX Studio & 0,00 \euro & 4800 horas & & & \\
-		Android Studio & 0,00 \euro & 4800 horas & & & \\
-		NMap & 0,00 \euro & 4800 horas & & & \\
-		Git & 0,00 \euro & 4800 horas & & & \\
-		GitHub & 0,00 \euro & 4800 horas & & & \\
+		Ordenador portátil 		& 700,00 \euro 	& 4800 horas & 0,145833 \euro & 285 h	& 41,57 \euro	\\
+		BQ Aquaris M5 			& 250,00 \euro 	& 4800 horas & 0,052083 \euro & 25 h	& 1,30 \euro	\\
+		Windows 10 				& 135,00 \euro 	& 4800 horas & 0,028125 \euro & 180 h	& 5,06 \euro	\\
+		Microsoft Project 2016 	& 1.369,00 \euro & 4800 horas & 0,285208 \euro & 25 h	& 7,13 \euro 	\\
+		WBS Chart Pro 			& 187,50 \euro 	& 4800 horas & 0,039062 \euro & 5 h		& 0,19 \euro	\\
+		Ubuntu 16.04 			& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 105 h	& 0,00 \euro	\\
+		TeX Studio 				& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 40 h	& 0,00 \euro	\\
+		Android Studio 			& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 105 h	& 0,00 \euro	\\
+		NMap 					& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 30 h	& 0,00 \euro	\\
+		Git 					& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 145 h	& 0,00 \euro	\\
+		GitHub 					& 0,00 \euro 	& 4800 horas & 0,000000 \euro & 145 h	& 0,00 \euro	\\
+		\hline
+		\multicolumn{5}{|l}{TOTAL} & \multicolumn{1}{r|}{55,25 \euro} \\ 
 		\hline
 	\end{tabular}
 	\caption{Amortizaciones de hardware y de software}
@@ -494,34 +549,118 @@ El cronograma completo, con las dos fases, como se muestra en las figuras \ref{f
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{ |c|c| } 
+	\begin{tabular}{ |l|r| } 
 		\hline
-		Concepto & Importe \\
+		\multicolumn{1}{|c|}{Concepto} & 
+			\multicolumn{1}{|c|}{Importe} \\
 		\hline
-		Recursos de Trabajo (R.T.) & 4.044,00 \euro \\
-		Recursos Materiales (R.M.) & 4.044,00 \euro \\
+		Recursos de Trabajo (R.T.)	& 4.044,00 \euro	\\
+		Recursos Materiales (R.M.)	& 54,00 \euro		\\
+		Costo fijo					& 0,00 \euro		\\
+		Amorizaciones				& 55,25 \euro		\\
+		\hline
+		SUMA						& 4.153,25 \euro	\\
+		\hline
+		Gastos generales (10\%)		& 415,32 \euro		\\
+		Beneficio (15\%)			& 622,99 \euro		\\
+		\hline
+		SUBTOTAL					& 5.191,56 \euro	\\
+		IVA (21\%)					& 1.090.23 \euro	\\
+		\hline
+		TOTAL						& 6281.79 \euro		\\
 		\hline
 	\end{tabular}
 	\caption{Total presupuesto}
 	\label{table:total-presupuesto}
 \end{table}
 
-\subsection{Presupuesto}
-{\color{red} Todas las tablas y así, todo lo dado en la asignatura de Mari Carmen.}
+Con esto se concluye que, tal como figura en la tabla \ref{table:total-presupuesto}, el coste del proyecto asciende a la cantidad de seis mil doscientos ochenta y cinco con setenta y nueve euros (6281.79 \euro).
 
 %------------------------------------------------------------------------------
 
 \section{Gestión de riesgos}
 
-\subsection{Fase 1}
-{\color{red} Poner los diferentes riesgos de la Fase 1. En esta fase son pocos o ninguno, por el carácter teórico de la fase.}
+En este apartado se identifican y analizan las diferentes amenazas que puedan llegar a impedir el correcto desarrollo del proyecto, haciendo que éste se retrase. Para ello primero se identificarán los diferentes riesgos que puedan existir y se indicará su peligrosidad. La peligrosidad es un valor cualitativo que indica cuánto puede afectar ese riesgo al proyecto.
 
-\subsubsection{Explicación y plan de contingencia}
-{\color{red} Explicar dichos riesgos. Poner por puntos. Puntos como descripción, peligrosidad, y medidas preventivas o para corregir. Nada de párrafos.}
+Se han identificado los siguientes riesgos, los cuales se muestran en la tabla \ref{table:riesgos}.
 
-\subsection{Fase 2}
-{\color{red} Poner los diferentes riesgos de la Fase 2. En esta fase los riesgos son mucho mayores, ya que puede haber desde complicaciones a la hora de programar, limitaciones por no ser root,... Mil historias.}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |l|c| } 
+		\hline
+		\multicolumn{1}{|c|}{Riesgo} & 
+		\multicolumn{1}{|c|}{Peligrosidad} \\
+		\hline
+			Pérdida de información										& Alta	\\
+			Enfermedades												& Alta	\\
+			Dificultades en la implementación de la aplicación			& Alta	\\
+			Dedicación no exclusiva al trabajo							& Media	\\
+			Averías o problemas técnicos con los recursos materiales	& Media	\\
+			Cambios o ampliación de requisitos							& Media	\\
+			Planificación muy optimista									& Media	\\
+		\hline
+	\end{tabular}
+	\caption{Enumeración de riesgos del proyecto}
+	\label{table:riesgos}
+\end{table}
 
-\subsubsection{Explicación y plan de contingencia}
-{\color{red} Explicar dichos riesgos. Poner por puntos. Puntos como descripción, peligrosidad, y medidas preventivas o para corregir. Nada de parrafos.}
 
+\subsection{Explicación y plan de contingencia}
+Tras haber identificado los riesgos inherentes al proyecto en la tabla \ref{table:riesgos}, se hace mayor hincapié en los detalles de dicho riesgos, elaborando una descripción más detallada y analizando su probabilidad. La probabilidad de cada riesgo se muestra de manera cualitativa, ya que aportar un valor numérico concreto en este tipo de casos resulta bastante complicado. También, junto a lo mencionado, se añade para cada riesgo un plan de contingencia. El plan de contingencia consiste básicamente en aportar medidas para afrontar dicho riesgo, tanto preventivas (para antes de que ocurra) como correctoras (para en caso de ocurrir).
+
+\riskframe
+	{Perdida de información}
+	{Podría darse el caso de que parte de la información, como la memoria del proyecto, el estado del arte o el código de la aplicación se perdieran}
+	{Baja}
+	{Alta}
+	{Uso de herramientas de control de versiones como Git junto a uso de herramientas cloud como GitHub o Dropbox}
+	{Recuperación de la información mediante herramientas de análisis de unidades}
+
+\riskframe
+	{Enfermedades}
+	{Podría suceder que el único recurso de trabajo contrajera una enfermedad o tuviera un accidente}
+	{Baja}
+	{Alta}
+	{Ninguna}
+	{Usar horas fuera del calendario para corregir el retraso en el proyecto}
+
+
+\riskframe
+	{Dificultades en la implementación de la aplicación}
+	{Podría suceder que, durante la implementación de la aplicación, se dieran dificultades a nivel de programación a la hora de cumplir con los requisitos funcionales}
+	{Media}
+	{Alta}
+	{Una formación sólida en las herramientas y tecnologías que se van a usar para el desarrollo de la aplicación}
+	{Replantear las tareas posteriores y dedicar un esfuerzo extra para el aprendizaje y refuerzo de las herramientas usadas}
+
+\riskframe
+	{Dedicación no exclusiva al trabajo}
+	{Podría suceder que, debido a exámenes u otros asuntos personales, el desarrollador no pudiera aportar toda la dedicación que requiere el proyecto}
+	{Media}
+	{Media}
+	{No previsible}
+	{Cambiar calendario de trabajo aumentando las horas para subsanar los retrasos producidos por dicho riesgo}
+
+\riskframe
+	{Averías o problemas técnicos con los recursos materiales}
+	{Podría darse el caso de que alguno de los recursos materiales de hardware, como el ordenador o el teléfono móvil, sufran algún tipo de avería}
+	{Baja}
+	{Media}
+	{No previsible}
+	{Uso de otros dispositivos para continuar con el desarrollo del proyecto, adquiridos mediante compra o préstamo}
+
+\riskframe
+	{Cambios o ampliación de requisitos}
+	{Podría darse el caso en el que, tras la conclusión de la Fase 1, se cambiarán requisitos funcionales de la aplicación a desarrollar o se añadirán nuevos requisitos funcionales}
+	{Media - Alta}
+	{Media}
+	{Revisión constante de los requisitos funcionales durante todas las fases del proyecto para minimizar el impacto que pueda causar los cambios en ellos}
+	{Adaptar el calendario las tareas posteriores y el calendario de trabajo actual}
+
+\riskframe
+	{Planificación muy optimista}
+	{Puede darse el caso de que la planificación elaborada para el proyecto sea demasiado optimista y no haya tenido en cuenta ciertos aspectos más concretos del desarrollo del proyecto}
+	{Media}
+	{Media}
+	{No previsible}
+	{Adaptar, y en caso de que fuera necesario retrasar, la fecha final del proyecto para dar cabida en la planificación toda  esa duración extra no prevista}
