@@ -2,24 +2,293 @@
 
 \epigraph{\textit{''Java es lo más penoso que le ha ocurrido a la informática desde MS-DOS''}}{--- Alan Kay}
 
-{\color{red} Explicar las tecnologias que se van a usar para desarrollar la aplicación. He metido este punto aquí, en la FASE 2 ya que va mas ligado a ella, y ponerlo justo antes del desarrollo en sí me parece correcto.}
+Durante el próximo capítulo se hablará de las herramientas que se usarán para diseñar, desarrollar, documentar y gestionar el desarrollo de la aplicación mencionada. Desde lenguajes de programación, frameworks, SDKs e IDEs hasta herramientas de control de versiones y herramientas secundarias que si bien no sirven directamente para desarrollar aplicaciones, sirven como apoyo para otras partes del proceso de desarrollo de la aplicación software.
 
 \section{Kali Linux}
 
+Kali Linux\footnote{\url{https://www.kali.org/}} es un sistema operativo basado en Debian que tiene como propósito ofrecer una gran cantidad de herramientas relacionadas con el mundo de la seguridad informática. Es sucesor directo de la conocida distribución BackTrack Linux. Abarca todo tipo de áreas como el \textit{Data Gathering}, \textit{Spoofing} de diferentes tipos, herramientas forenses o ataques a redes inalámbricas por mencionar solo algunos ejemplos. Es una de las distribuciones más usadas por pentesters y expertos en seguridad informática, en la que se recogen cientos de herramientas concretas, algunas de las cuales son consideradas herramientas de trabajo fundamentales para cualquier hacker, como por ejemplo \textit{Metasploit Framework}, \textit{Johnny The Ripper} o \textit{Nmap}. Esta última será la herramienta que usaremos para dotar a nuestra aplicación de capacidad para obtener información.
+
+Se usará Kali para realizar diversas pruebas con Nmap, previo paso a la integración en la aplicación, para posteriormente poder programar la aplicación que extraerá información de dicha herramienta.
+
 %------------------------------------------------------------------------------
 
-\section{NMap}
+\section{Nmap}
+
+Nmap\footnote{\url{https://nmap.org/}} es un software de escaneo de redes muy usado en auditorías de seguridad. Permite obtener una gran cantidad de información de diferentes nodos o redes, como los servicios que ofrecen, información sobre el sistema operativo o el CMS y sus versiones, qué tipo de filtrado de paquetes realizan, etc.
+
+Nmap es la herramienta de su categoría más usada por varias razones. La primera es que es software libre, con todas las ventajas que eso conlleva: es gratuito, está bien documentado y tiene una comunidad detrás que le da soporte y va mejorándolo y añadiéndole funcionalidades constantemente. Lo segundo es que posee de una gran cantidad de herramientas adicionales, teniendo hasta una GUI (\textit{Zenmap}) y un lenguaje propio (\textit{Nmap Scripting Engine, NSE}) que permite crear scripts específicos que Nmap es capaz de ejecutar independientemente del sistema operativo que se esté usando.
+
+Se usará Nmap como base para realizar las diferentes operaciones de escaneo de redes. Más adelante se explicará el proceso de integración en la aplicación y como se extrae la información que Nmap nos provee para usarla en nuestra aplicación.
 
 %------------------------------------------------------------------------------
 
 \section{Android}
 
+Android es un sistema operativo creado en 2005 y que actualmente posee Google. Aun así, el sistema operativo mantiene lo que denomina el AOSP (\textit{Android Open Source Project}), el cual garantiza que Android siga siendo software libre.
+
+Esto hace que desarrollar para esta plataforma sea completamente gratuito. Si a eso se añade la extensa documentación que existe para desarrollar para esta plataforma, hace que sea una plataforma hacia la cual cada vez más desarrolladores se lanzan a, valga la redundancia, desarrollar aplicaciones en ella.
+
+La elección de este sistema operativo es el paso más lógico teniendo en cuenta que, como se ha mencionado anteriormente, es el sistema operativo con mayor numero de usuarios y además es el que mayores facilidades ofrece para desarrollar.
+
 \subsection{Android SDK}
 
+Se puede desarrollar para Android mediante diversas herramientas, pero la mas común de todas es hacer directamente uso del Android SDK (\textit{Software Development Kit}). El SDK nos proporciona todas las herramientas que necesitamos para desarrollar, compilar y depurar aplicaciones para Android.
+
+Existen alternativas que nos abstraen de las capas más bajas de la programación, como puede ser el uso de frameworks multiplataforma que hacer uso de tecnologías web, como \textit{Phonegap} o \textit{Ionic}. Este tipo de frameworks convierten en triviales una gran cantidad de tareas que requerirían un mayor tiempo de programación, además de que, mediante el uso de tecnologías web como HTML, CSS y JavaScript, permiten un desarrollo multiplataforma y desarrollar interfaces gráficas en una menor cantidad de tiempo.
+
+Por otra parte, se podría optar por soluciones para desarrollar en Android a un nivel más bajo, como es el Android NDK (\textit{Native Development Kit}), que permite compilar código C++ para Android, permitiendo aumentar el rendimiento en ciertas partes evitando que nuestro código pase por la MV Dalvik, o permitiendo el uso de librerías complejas que tengamos previamente desarrolladas de dicho lenguaje.
+
+No se va a optar por ninguna de las soluciones mencionadas en los dos parrafos anteriores por varios motivos. Por una parte, si bien es cierto que dichos frameworks simplifican, \textit{a priori}, el desarrollo de ciertas aplicaciones, estas aplicaciones suelen encontrarse limitadas en funcionalidad, y para lo que se pretende desarrollar en este proyecto concreto no servirían, ya que necesitamos el uso de librerías externas complejas.
+
+Por otra parte, se evita el uso del NDK ya que, al no tener la necesidad de aplicar cambios en las librerías externas y además dichas librerías, que usaremos compiladas ya están optimizadas para obtener el mejor rendimiento posible, eliminamos el uso del NDK para simplificar el proceso de desarrollo.
+
+\subsection{Kotlin}
+
+Una vez optado por programar directamente con el SDK de Android y habiendo dejado a un lado opciones como el uso del NDK o diversos frameworks que proveen de abstracciones, el siguiente paso lógico consiste en la elección de un lenguaje de programación para programar la aplicación. La elección de dicho lenguaje obedece a varios factores. En primer lugar, no se puede desarrollar cualquier tipo de aplicación con cualquier lenguaje. Por ejemplo, a nadie se le ocurriría usar C++ para desarrollar el frontend de una aplicación web, de la misma manera que pocos se atreverían a usar Lisp para el desarrollo de videojuegos. Por otro lado, las características específicas de un lenguaje u otro son determinantes a la hora de elegir entre ellos. A eso se le añade que es una mala práctica usar un criterio personal a la hora de elegir un lenguaje especifico.
+
+Teniendo eso en cuenta, la primera opción para desarrollar aplicaciones con el SDK de Android sería Java, ya que es el lenguaje en el que está programado dicho kit. por otra parte Java es un lenguaje con un largo recorrido, que actualmente, y según el índice TIOBE, es el lenguaje de programación más usado \cite{tiobe}, ocupando el primer puesto en su ranking. Tiene una gran comunidad y gran parte de el software que usamos actualmente está desarrollado con él.
+
+Sin embargo, se ha optado por elegir Kotlin como lenguaje de programación. Kotlin\footnote{\url{https://kotlinlang.org/}} es un lenguaje de programación, publicado bajo la licencia Apache, que se ejecuta en la JVM y cuyo desarrollo comenzó y es supervisado por JetBrains, compañia que dasarrolla IDEs y plugins para desarrollar aplicaciones. Tiene como principal objetivo ser un sustituto viable de Java, corrigiendo los defectos que tiene y aportando nuevos elementos a su sintaxis que permitan facilitar el desarrollo y obtener un código más limpio y claro.
+
+Se ha optado por el uso de Kotlin por varios motivos. El primero es que aporta numerosas ventajas en comparación con Java que permiten dejar un código más limpio y fácil de entender. Por otra parte es completamente interoperable con Java, por lo que se complementa a la perfección con partes de código escrito en Java. A todo esto se le añade que recientemente Android ha adoptado a Kotlin como lenguaje oficial \cite{kotlin-android}, por lo que su uso no dará problemas en Android y además hará que se encuentre documentación oficial sobre Kotlin en Android que permita ayudarnos a la hora de desarrollar la aplicación.
+
+\subsubsection{Ventajas de Kotlin}
+
+A nivel de programación Kotlin incluye una serie de mejoras, tanto a nivel de código, añadiendo nueva sintaxis, como en el núcleo del propio lenguaje. Aunque la lista de mejoras, añadidos y aspectos que se han decidido eliminar que sí que se encuentran disponibles en Java es larga, a continuación se enseñan algunos aspectos del lenguaje que permiten vislumbrar las ventajas que tiene respecto a Java \cite{kotlin-vs-java}.
+
+\paragraph{Control de referencia nulas}
+
+Kotlin corrige uno de los principales problemas del desarrollo de aplicaciones en Java, que son los Null Pointer Exceptions. Kotlin es mucho más seguro en esto ya que por defecto en Kotlin una variable no puede ser nula, y si queremos que esa variable tenga la posibilidad de ser nula debemos usar un operador especifico (el operador \mintinline{java}{?.}).
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+var a: String = "abc"
+a = null // Error de compilacion
+
+var b: String? = "abc"
+b = null // Ok
+
+\end{minted}
+
+De la misma manera, se puede especificar en la declaración de una función si esta puede devolver o no un valor nulo. Kotlin no permite asignar un valor que independientemente del tipo que sea, pueda ser nulo a una variable que no pueda serlo.
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+fun foo(node: Node): String? {
+	if(node.canString()) {
+		return node.toString()
+	}
+	else {
+		return null // Esto funciona
+	}
+}
+
+fun foo2(node: Node): String {
+	return null // Error de compilacion
+}
+
+\end{minted}
+
+De ahí que, si queremos usar una función que pueda devolver un valor nulo o obtener un atributo de una instancia que pueda ser nulo tendremos tres opciones:
+
+\begin{enumerate}
+	\item Comprobar si es nulo antes de usar el operador: Kotlin detecta automáticamente si se ha realizado una comprobación de este tipo, y una vez hecha nos permitirá realizar este tipo de operaciones.
+	
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+var b: String? = "abc"
+if (var != null) {
+	var c: String = b // Esto si se permite, ya que ahora sabemos que no es null
+}
+var d: String = b // Esto da error, puede ser null
+
+\end{minted}
+
+	\item Usar el operador seguro \mintinline{java}{?.}: en este caso, si el valor existe o la función no devuelve un valor nulo todo funcionará correctamente, si no devolverá un valor nulo.
+	
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+var b: String? = "abc"
+var len: Int? = b?.length // Si b no es null devuelve la longitud (3)
+var len2: Int = b?.length // Esto da error, puede ser null
+
+\end{minted}
+
+	\item Usar el operador \mintinline{java}{!!.}: Este operador es mucho más estricto. En caso de tratar con valores nulos genera directamente una Null Pointer Exception. La ventaja es que permite que las variable sean siempre no nulas.
+	
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+var b: String? = "abc"
+var len: Int? = b!!.length // Si b no es null devuelve la longitud, si no salta un NPE
+var len2: Int = b!!.length // Esto NO da error, porque en caso de ser null saltará un NPE
+
+\end{minted}
+
+\end{enumerate}
+
+\paragraph{Atributos de una clase}
+
+Kotlin dispone de mecanismos para generar automáticamente funciones Getter y Setter, de tal manera que se ahorra ese engorroso código que se genera en muchas clases de aplicaciones en Java. Por otra parte se puede modificar estas funciones de manera muy sencilla para que cumplan diversos objetivos, usando menos código que en Java.
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+class Lista {
+
+	// ...
+	
+	var elementos
+		get() {
+			return elementos.filterNotNull()
+		}
+		set(value) {
+			if(value != null)
+				elementos.add(value)
+		}
+	val isEmpty: Boolean
+		get() = elementos.size == 0
+	
+	// ...
+
+}
+\end{minted}
+
+\paragraph{Singletons}
+Se puede hacer uso del patrón Singleton usando la palabra \mintinline{java}{object} en vez de \mintinline{java}{class} a la hora de crear la clase en cuestión, de tal manera que Kotlin se encarga de que solo haya una instancia de esa clase.
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+class PDF {
+	// ...
+}
+
+object PDFManager {
+	// ...
+}
+
+var pdf1 = PDF() // Ok
+PDFManager.AddPDF(pdf1) // Se accede a sus funciones y variables como si fuera una variable normal
+var manager = PDFManager() // Error de compilacion. No se pueden crear instancias de un singleton, porque Kotlin ya crea la unica instancia posible
+
+\end{minted}
+
+\paragraph{Data Classes}
+
+Kotlin tiene un tipo de clases especial para cuando se desea una clase que solo almacene información y carezca de toda funcionalidad, denominado Data Classes, que permite ciertas ventajas a la hora de realizar comparaciones o copiar datos, y reduce sensiblemente la cantidad de código de la clase.
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+data class User(val name: String, val age: Int)
+data class User(val name: String = "", val age: Int = 0)
+
+\end{minted}
+
+\paragraph{Expresiones de rango}
+
+Koltin, al igual que lenguajes como Python, permite expresiones de rango, que nos permiten iterar sobre langos de numeros de forma muy sencilla: ademas permite determianr la cantidad de aumento o disminución en cada itaracion, como se puede observar en los siguientes ejemplos.
+
+\begin{minted}[
+tabsize=4,
+frame=single,
+framesep=2mm,
+baselinestretch=1.2,
+fontsize=\footnotesize,
+linenos,
+breaklines
+]{java}
+
+for (i in 1..4 step 2) 
+	print(i) // imprime "13"
+for (i in 4 downTo 1 step 2)
+	print(i) // imprime "42"
+
+\end{minted}
+
+Aunque existen aun más, con las ventajas mostradas anteriormente queda reflejado que Kotlin supone un gran avance con respecto a desarrollar usando Java.
+
 \subsection{Android Studio}
+
+Android Studio es un IDE que nos va a permitir desarrollar para Android mucho más cómodamente. Nos permite hacer uso del SDK y asimismo nos provee de una serie de herramientas, como herramientas de diseño de interfaces gráficas, herramientas de depuración, dispositivos Android virtuales, además de otras ventajas que suele conllevar el uso de un IDE como el autocompletado de código, la automatización de la compilación y el desarrollo o herramientas de análisis de rendimiento. Se trata de un fork del conocido IDE \textit{IntelliJ IDEA}, de la compañia JetBrains, al que se le añaden las herramienteas necesarias para programar en Android.
+
+Es el IDE que se usará para desarrollar la aplicación porque por una parte es el que recomienda Android, ya que está especialmente diseñado con el propósito de desarrollar aplicaciones Android, y por otra parte tiene soporte para Kotlin.
 
 %------------------------------------------------------------------------------
 
 \section{Otras herramientas}
 
+Una vez mencionadas herramientas que permiten desarrollar la aplicación se pasa a mencionar herramientas que, aunque no influyen directamente en el desarrollo de la aplicación, merecen especial mención porque influyen de manera indirecta, y se usan para el desarrollo del proyecto.
+
 \subsection{Git}
+
+Git\footnote{\url{https://git-scm.com/}} es un Sistema de Control de Versiones o VCS (\textit{Version Control Systems}) distribuido y de código libre desarrollado por Linus Torvalds en 2005 con el objetivo de llevar un control sobre el desarrollo del Kernel Linux. Es a día de hoy uno de los VCS más usados, que tiene diferentes implementaciones para una gran cantidad de sistemas y dispone de una gran cantidad de documentación. 
+
+El uso de este VCS tiene como objetivo poder llevar un control sobre el desarrollo y el avance de nuestro código, pudiendo revertir cambios, crear diferentes ramas en el desarrollo para desarrollar diferentes funcionalidades por separado o actuar como sistema de backup mediante el uso de un repositorio remoto que puede esta alojado en servicios como GitHub\footnote{\url{https://github.com/}} o similares.
+
+\subsection{\LaTeX}
+
+LaTeX\footnote{\url{http://www.latex-project.org/}}  es un sistema de composición de textos que permite crear todo tipo de documentos. Es muy utilizado para escribir de artículos académicos, tesis y libros técnicos porque los documentos generados con él son de alta calidad, al mismo nivel que una editorial profesional, con la ventaja de que es completamente libre.
+
+Se usará LaTeX, junto una serie de librerías específicas, para el desarrollo de este informe por la calidad de los documentos que genera y por ser prácticamente un estándar dentro de la comunidad científica. 
