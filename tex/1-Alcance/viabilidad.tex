@@ -60,7 +60,7 @@ El EDT para la Fase 2 quedaría como se muestra en las figura \ref{fig:edt2}.
 \end{figure}
 
 \subsection{Agenda del proyecto}
-El proyecto se llevará a cabo durante varios meses, comenzando en abril. Se trabajará a media jornada (4 horas) de lunes a viernes, con las siguientes excepciones. Primero, se tendrá en cuenta el calendario de festivos oficiales para aplicar algunas jornadas festivas en cuyos días no se trabajará. Esos días quedan reflejados en la tabla \ref{table:festivos-oficiales}. A esos festivos se les aplica unas excepciones, en las cuales, aun siendo festivo, se trabajará igualmente. Esos festivos en los que se trabaja están indicados en rojo.
+El proyecto se llevará a cabo durante varios meses, comenzando en abril. Se trabajará a media jornada (4 horas) de lunes a viernes, con las siguientes excepciones. Primero, se tendrá en cuenta el calendario de festivos oficiales para aplicar algunas jornadas festivas en cuyos días no se trabajará. Esos días quedan reflejados en la tabla \ref{table:festivos-oficiales}.
 
 \begin{table}[H]
 	\centering
@@ -71,15 +71,16 @@ El proyecto se llevará a cabo durante varios meses, comenzando en abril. Se tra
 		1 de Enero & Año nuevo \\
 		6 de Enero & Día de Reyes \\
 		19 de Marzo & San José \\
-		{\color{red} 2 de Abril} & {\color{red} Jueves Santo }\\
-		{\color{red} 3 de Abril} & {\color{red} Viernes Santo }\\
-		{\color{red} 6 de Abril} & {\color{red} Lunes de Pascua }\\
+		2 de Abril & Jueves Santo \\
+		3 de Abril & Viernes Santo \\
+		6 de Abril & Lunes de Pascua \\
 		28 de Abril & San Prudencio \\
 		1 de Mayo & Día del trabajo \\
-		{\color{red}25 de Julio} & {\color{red}Santiago Apóstol } \\
+		25 de Julio & Santiago Apóstol \\
 		5 de Agosto & Virgen Blanca \\
 		15 de Agosto & Asunción de la Virgen \\
 		12 de Octubre & Fiesta Nacional de España \\
+		6 de Diciembre & Día de la constitución \\
 		8 de Diciembre & Inmaculada Concepción \\
 		25 de Diciembre & Navidad \\
 		\hline
@@ -88,23 +89,7 @@ El proyecto se llevará a cabo durante varios meses, comenzando en abril. Se tra
 	\label{table:festivos-oficiales}
 \end{table}
 
-Por otra parte, existen una serie de días en los que se aplica una reducción de la jornada laboral de 4 a 2 horas (en los días considerados laborales), debido básicamente a exámenes. Estos periodos vienen indicados en la tabla \ref{table:reduccion-jornada}.
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ |c|c|c| } 
-		\hline
-		Nombre del periodo & Fecha de inicio & Fecha de fin \\
-		\hline
-		Exámenes Convocatoria Ordinaria & 16 de mayo & 23 de mayo \\
-		Exámenes Convocatoria Extraordinaria & 27 de junio & 4 de julio \\
-		\hline
-	\end{tabular}
-	\caption{Reducciones de la jornada laboral}
-	\label{table:reduccion-jornada}
-\end{table}
-
-En base a dicho calendario, la fecha estimada de finalización del proyecto es del 24 de Julio.
+En base a dicho calendario, la fecha estimada de finalización del proyecto es del 16 de enero del 2018.
 
 \subsection{Tareas}
 El EDT completo de tareas, al que se añaden la fase inicial de objetivos del proyecto, y toda la fase final de elaboración de la memoria, presentación y la defensa quedaría de la siguiente manera.
@@ -126,7 +111,7 @@ El EDT completo de tareas, al que se añaden la fase inicial de objetivos del pr
 			\item Formación Pentesting
 			\begin{numbered}
 				\item Formación Teórica
-				\item Formación NMap
+				\item Formación Nmap
 			\end{numbered}
 			\item Formación Android
 			\begin{numbered}
@@ -166,7 +151,7 @@ El EDT completo de tareas, al que se añaden la fase inicial de objetivos del pr
 			\item Implementación de la aplicación
 			\begin{numbered}
 				\item Programación de herramientas básicas
-				\item Integración de NMap
+				\item Integración de Nmap
 				\item Programación de parser de elementos
 				\item Enlazado de datos con la GUI
 			\end{numbered}
@@ -211,8 +196,8 @@ A continuación se explica mediante una breve definición cada tarea, además de
 	{20}
 \taskframe
 	{1.1.2.2}
-	{Formación NMap}
-	{Familiarizarse con el entorno de NMap, cómo implementarlo, usarlo para obtener información y de qué formas se puede obtener información estructurada y organizada para su posterior uso}
+	{Formación Nmap}
+	{Familiarizarse con el entorno de Nmap, cómo implementarlo, usarlo para obtener información y de qué formas se puede obtener información estructurada y organizada para su posterior uso}
 	{10}
 \taskframe
 	{1.1.3.1}
@@ -286,13 +271,13 @@ A continuación se explica mediante una breve definición cada tarea, además de
 	{10}
 \taskframe
 	{2.2.2.2}
-	{Integración de NMap}
-	{Integrar el núcleo de NMap en la aplicación para poder hacer uso de toda su funcionalidad}
+	{Integración de Nmap}
+	{Integrar el núcleo de Nmap en la aplicación para poder hacer uso de toda su funcionalidad}
 	{10}
 \taskframe
 	{2.2.2.3}
 	{Programación de parser de elementos}
-	{Elaborar un puente entre NMap y la aplicación para obtener los datos de NMap y poder usarlos en la aplicación de la manera más organizada posible}
+	{Elaborar un puente entre Nmap y la aplicación para obtener los datos de Nmap y poder usarlos en la aplicación de la manera más organizada posible}
 	{20}
 \taskframe
 	{2.2.2.4}
@@ -413,7 +398,7 @@ Por otra parte, en la tabla \ref{table:software} se muestra los recursos materia
 		Ubuntu 16.04 	& 0,00 \euro							\\
 		TeX Studio 		& 0,00 \euro							\\
 		Android Studio 	& 0,00 \euro							\\
-		NMap 			& 0,00 \euro							\\
+		Nmap 			& 0,00 \euro							\\
 		Git 			& 0,00 \euro							\\
 		GitHub 			& 0,00 \euro							\\
 		\hline
