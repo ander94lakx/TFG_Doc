@@ -32,7 +32,7 @@ La elección de este sistema operativo es el paso más lógico teniendo en cuent
 
 \subsection{Android SDK}
 
-Se puede desarrollar para Android mediante diversas herramientas, pero la mas común de todas es hacer directamente uso del Android SDK (\textit{Software Development Kit}). El SDK nos proporciona todas las herramientas que necesitamos para desarrollar, compilar y depurar aplicaciones para Android.
+Se puede desarrollar para Android mediante diversas herramientas, pero la más común de todas es hacer directamente uso del Android SDK (\textit{Software Development Kit}). El SDK nos proporciona todas las herramientas que necesitamos para desarrollar, compilar y depurar aplicaciones para Android.
 
 Existen alternativas que nos abstraen de las capas más bajas de la programación, como puede ser el uso de frameworks multiplataforma que a su vez hacen uso de tecnologías web, como \textit{Phonegap} o \textit{Ionic}. Este tipo de frameworks convierten en triviales una gran cantidad de tareas que requerirían un mayor tiempo de programación, además de que, mediante el uso de tecnologías web como HTML, CSS y JavaScript, permiten un desarrollo multiplataforma y elaborar interfaces gráficas en una menor cantidad de tiempo.
 
@@ -46,19 +46,19 @@ Por otra parte, se evita el uso del NDK ya que, al no tener la necesidad de apli
 
 Una vez optado por programar directamente con el SDK de Android y habiendo dejado a un lado opciones como el uso del NDK o diversos frameworks que proveen de abstracciones, el siguiente paso lógico consiste en la elección de un lenguaje de programación para programar la aplicación. La elección de dicho lenguaje obedece a varios factores. En primer lugar, no se puede desarrollar cualquier tipo de aplicación con cualquier lenguaje. Por ejemplo, a nadie se le ocurriría usar C++ para desarrollar el frontend de una aplicación web, de la misma manera que pocos se atreverían a usar Lisp para el desarrollo de videojuegos. Por otro lado, las características específicas de un lenguaje u otro son determinantes a la hora de elegir entre ellos. A eso se le añade que resulta mala práctica usar un criterio personal a la hora de elegir un lenguaje especifico.
 
-Teniendo eso en cuenta, la primera opción para desarrollar aplicaciones con el SDK de Android sería Java, ya que es el lenguaje en el que está programado dicho kit. por otra parte Java es un lenguaje con un largo recorrido y actualmente, según el índice TIOBE, es el lenguaje de programación más usado \cite{tiobe}, ocupando el primer puesto en su ranking. Tiene una gran comunidad a su alrededor y gran parte de el software que usamos actualmente está desarrollado con él.
+Teniendo eso en cuenta, la primera opción para desarrollar aplicaciones con el SDK de Android sería Java, ya que es el lenguaje en el que está programado dicho kit. Por otra parte Java es un lenguaje con un largo recorrido y actualmente, según el índice TIOBE, es el lenguaje de programación más usado \cite{tiobe}, ocupando el primer puesto en su ranking. Tiene una gran comunidad a su alrededor y gran parte de el software que usamos actualmente está desarrollado con él.
 
-Sin embargo, se ha optado por elegir Kotlin como lenguaje de programación. Kotlin\footnote{\url{https://kotlinlang.org/}} es un lenguaje de programación, publicado bajo la licencia Apache, que se ejecuta en la JVM y cuyo desarrollo comenzó y es supervisado por JetBrains, compañia que dasarrolla IDEs y plugins para desarrollar aplicaciones. Tiene como principal objetivo ser un sustituto viable de Java, corrigiendo los defectos que este último tiene y aportando nuevos elementos a su sintaxis que permitan facilitar el desarrollo y obtener un código más limpio y claro.
+Sin embargo, se ha optado por elegir Kotlin como lenguaje de programación. Kotlin\footnote{\url{https://kotlinlang.org/}} es un lenguaje de programación, (publicado bajo la licencia Apache) que se ejecuta en la JVM y cuyo desarrollo comenzó y es supervisado por JetBrains, compañia que dasarrolla IDEs y plugins para desarrollar aplicaciones. Tiene como principal objetivo convertirse en un sustituto viable de Java, corrigiendo los defectos que este último tiene y aportando nuevos elementos a su sintaxis que permitan facilitar el desarrollo y obtener un código más limpio y claro.
 
-Se ha optado por el uso de Kotlin por varios motivos. El primero es que aporta numerosas ventajas con respecto a Java que permiten dejar un código más limpio y fácil de entender. Por otra parte es completamente interoperable con Java, por lo que se complementa a la perfección con partes de código escritas en Java. A todo esto se le añade que recientemente Android ha adoptado a Kotlin como lenguaje oficial \cite{kotlin-android}, por lo que su uso no dará problemas en Android y además hará que se encuentre documentación oficial sobre Kotlin en dicho sistema que permita ayudarnos a la hora de desarrollar la aplicación.
+Se ha optado por el uso de Kotlin por varios motivos. El primero es que aporta numerosas ventajas con respecto a Java que, como se ha mencionado, permiten elaborar un código más limpio y fácil de entender. Por otra parte es completamente interoperable con Java, por lo que se complementa a la perfección con partes de código escritas en Java. A todo esto se le añade que recientemente Android ha adoptado a Kotlin como lenguaje oficial \cite{kotlin-android}, por lo que su uso no dará problemas en Android. Eso además hará que se encuentre documentación oficial sobre el uso de Kotlin en dicho sistema, lo que simplificará el desarrollo de la aplicación.
 
 \subsubsection{Ventajas de Kotlin}
 
-A nivel de programación Kotlin incluye una serie de mejoras, tanto a nivel de código, añadiendo nueva sintaxis, como en el núcleo del propio lenguaje. Aunque la lista de mejoras, añadidos y aspectos que se han decidido eliminar que sí que se encuentran disponibles en Java es larga, a continuación se enseñan algunos aspectos del lenguaje que permiten vislumbrar las ventajas que tiene respecto a Java \cite{kotlin-vs-java}.
+A nivel de programación Kotlin representa una mejora notable con respecto a Java, tanto a nivel de código, añadiendo nueva sintaxis, como la funcionalidad adicional que aporta la librería estándar del propio lenguaje. Aunque la lista de mejoras, añadidos y aspectos que se han decidido eliminar con respecto a Java es excesivamente larga como para mostrarla completamente, a continuación se enseñan algunos aspectos del lenguaje que permiten vislumbrar las ventajas que ofrece frente a Java \cite{kotlin-vs-java}.
 
 \paragraph{Control de referencias nulas}
 
-Kotlin corrige uno de los principales problemas del desarrollo de aplicaciones en Java, que son los Null Pointer Exceptions. Kotlin es mucho más seguro a ese nivel ya que, por defecto en Kotlin, una variable no puede ser nula, y si queremos que esa variable tenga la posibilidad de ser nula debemos usar un operador específico (el operador \mintinline{java}{?.}).
+Kotlin corrige uno de los principales problemas del desarrollo de aplicaciones en Java, que son los \textit{Null Pointer Exceptions}. Kotlin es mucho más seguro a ese nivel ya que, por defecto en Kotlin, una variable no puede ser nula, y si queremos que esa variable tenga la posibilidad de ser nula debemos usar un operador específico (el operador \mintinline{java}{?.}).
 
 \begin{minted}[
 tabsize=4,
@@ -146,7 +146,7 @@ var len2: Int = b?.length // Esto da error, puede ser null
 
 \end{minted}
 
-	\item Usar el operador \mintinline{java}{!!.}: Este operador es mucho más peligroso. En caso de tratar con valores nulos genera directamente una Null Pointer Exception. La ventaja es que permite que las variable sean siempre no nulas.
+	\item Usar el operador \mintinline{java}{!!.}: Este operador es mucho más peligroso. En caso de tratar con valores nulos genera directamente una \textit{Null Pointer Exception}. La ventaja es que permite que las variable sean siempre no nulas.
 	
 \begin{minted}[
 tabsize=4,
@@ -248,7 +248,7 @@ data class User(val name: String = "", val age: Int = 0)
 
 \paragraph{Expresiones de rango}
 
-Kotlin, al igual que lenguajes como Python, permite expresiones de rango, que nos permiten iterar sobre rangos de numeros de forma muy sencilla: además permite determinar la cantidad de aumento o disminución en cada iteración, como se puede observar en los siguientes ejemplos.
+Kotlin, al igual que otros lenguajes como Python, permite expresiones de rango, que nos permiten iterar sobre rangos de numeros de forma muy sencilla: además permite determinar la cantidad de aumento o disminución en cada iteración, como se puede observar en los siguientes ejemplos.
 
 \begin{minted}[
 tabsize=4,
@@ -271,7 +271,7 @@ Aunque existen aun más, con las ventajas mostradas anteriormente queda claramen
 
 \subsection{Android Studio}
 
-Android Studio es un IDE que posibilita desarrollar para Android de manera mucho más cómoda. Permite hacer uso del SDK y, asimismo, nos provee de una serie de herramientas, como herramientas de diseño de interfaces gráficas, herramientas de depuración, dispositivos Android virtuales, además de otras ventajas que suele conllevar el uso de un IDE como el autocompletado de código, la automatización de la compilación y el desarrollo o herramientas de análisis de rendimiento. Se trata de un fork del conocido IDE \textit{IntelliJ IDEA}, de la compañia JetBrains, al que se le han añadido las herramienteas necesarias para programar en Android.
+Android Studio es un IDE que posibilita desarrollar para Android de manera mucho más cómoda. Permite hacer uso del SDK y, asimismo, nos provee de una serie de herramientas, como herramientas de diseño de interfaces gráficas, herramientas de depuración o dispositivos Android virtuales, además de otras ventajas que suele conllevar el uso de un IDE como el autocompletado de código, la automatización de la compilación y el desarrollo o herramientas de análisis de rendimiento. Se trata de un fork del conocido IDE \textit{IntelliJ IDEA}, de la compañia JetBrains, al que se le han añadido las herramienteas necesarias para programar en Android.
 
 Es el IDE que se usará para desarrollar la aplicación porque, por una parte, es el que recomienda Android ya que está especialmente diseñado con el propósito de desarrollar aplicaciones para su plataforma y, por otra parte, tiene soporte para Kotlin.
 
@@ -279,13 +279,13 @@ Es el IDE que se usará para desarrollar la aplicación porque, por una parte, e
 
 \section{Otras herramientas}
 
-Una vez mencionadas herramientas que permiten desarrollar la aplicación se pasa a mencionar herramientas que, aunque no influyen directamente en el desarrollo de la aplicación, merecen especial mención porque influyen de manera indirecta y se usan para el desarrollo del proyecto.
+Una vez mencionadas herramientas que permiten desarrollar la aplicación se pasa a mencionar herramientas que, aunque no influyen directamente en la programación de la aplicación, merecen especial mención porque influyen de manera indirecta y se usan para el desarrollo del proyecto.
 
 \subsection{Git}
 
 Git\footnote{\url{https://git-scm.com/}} es un Sistema de Control de Versiones o VCS (\textit{Version Control Systems}) distribuido y de código libre desarrollado por Linus Torvalds en 2005 con el objetivo de llevar un control sobre el desarrollo del Kernel Linux. Es a día de hoy uno de los VCS más usados, tiene diferentes implementaciones para una gran cantidad de sistemas y dispone de una amplia documentación. 
 
-El uso de este VCS tiene como objetivo poder llevar un control sobre el desarrollo y el avance de nuestro código, pudiendo revertir cambios, crear diferentes ramas en el desarrollo para desarrollar diferentes funcionalidades por separado o actuar como sistema de backup mediante el uso de un repositorio remoto que puede esta alojado en servicios como GitHub\footnote{\url{https://github.com/}} o similares.
+El uso de este VCS tiene como objetivo poder llevar un control sobre el desarrollo y el avance de nuestro código, pudiendo revertir cambios, crear diferentes ramas en el desarrollo para desarrollar diferentes funcionalidades por separado o actuar como sistema de backup mediante el uso de un repositorio remoto que puede esta alojado en servicios de alojamiento de repositorios como GitHub\footnote{\url{https://github.com/}} o similares.
 
 \subsection{\LaTeX}
 
