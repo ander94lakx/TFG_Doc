@@ -98,17 +98,17 @@ Toda este volcado de binarios de Nmap para el dispositivo se gestiona desde una 
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/install.kt}
+	]{kotlin}{code/install.kt}
 	\caption{Función que instala Nmap en el dispositivo}
 
 	\label{code:install}
 \end{listing}
 
-Como se puede observar en el código, dentro de la función \mintinline{java}{install()} se realiza ese volcado pudiendo tener opciones para reescribir los archivos en caso de que se quierre escribir. Estos archivos se cargan a través del Asset Manager y mediante las clases de Java para interactuar con ficheros comprimidos se extraen en los ficheros internos de la aplicación.
+Como se puede observar en el código, dentro de la función \mintinline{java}{install()} se realiza ese volcado pudiendo tener opciones para reescribir los archivos en caso de que se quiere escribir. Estos archivos se cargan a través del Asset Manager y mediante las clases de Java para interactuar con ficheros comprimidos se extraen en los ficheros internos de la aplicación.
 
 A su vez también se actualiza la base de datos de script NSE de Nmap, en caso de que se quiera después ejecutar alguno de esos script. 
 
@@ -125,12 +125,12 @@ Lo que tenemos que hacer para ejecutar un escaneo es ejecutar el binario de Nmap
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/startProcess.kt}
-	\caption{Funcion para arrancar el proceso con la shell que ejecutará Nmap}
+	]{kotlin}{code/startProcess.kt}
+	\caption{Función para arrancar el proceso con la shell que ejecutará Nmap}
 	
 	\label{code:startProcess}
 \end{listing}
@@ -142,11 +142,11 @@ Después de esto debemos construir un comando de Nmap. Este comando es básicame
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/commandBuilder.kt}
+	]{kotlin}{code/commandBuilder.kt}
 	\caption{Función que crea el comando a ejecutar de Nmap}
 	
 	\label{code:commandBuilder}
@@ -163,11 +163,11 @@ Una vez realizado el escaneo y habiéndose generado ese fichero XML, solo queda 
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/runScan.kt}
+	]{kotlin}{code/runScan.kt}
 	\caption{Función con todo el proceso de ejecución de un escaneo en Nmap}
 	
 	\label{code:runScan}
@@ -182,11 +182,11 @@ La tercera y última parte del proceso para integrar Nmap es leer los datos que 
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\tiny,
 	linenos,
 	breaklines
-	]{java}{code/nmapParser.kt}
+	]{kotlin}{code/nmapParser.kt}
 	\caption{Extracto de la implementación de un parser de un XML de Nmap}
 	
 	\label{code:nmapParser}
@@ -199,7 +199,7 @@ Almacenar la información en XML la almacena jerarquizada en cierta manera la ma
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\tiny,
 	linenos,
 	breaklines
@@ -220,11 +220,11 @@ Por último una vez leído ese fichero a medida que se va leyendo ese fichero se
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/nmapScan.kt}
+	]{kotlin}{code/nmapScan.kt}
 	\caption{Data Classes para la información de un scan en Nmap}
 	
 	\label{code:nmapScan}
@@ -239,7 +239,7 @@ Por último una vez leído ese fichero a medida que se va leyendo ese fichero se
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/nmapHost.kt}
+	]{kotlin}{code/nmapHost.kt}
 	\caption{Data Classes para la información de un host en Nmap}
 	
 	\label{code:nmapHost}
@@ -250,20 +250,22 @@ Por último una vez leído ese fichero a medida que se va leyendo ese fichero se
 	tabsize=4,
 	frame=single,
 	framesep=2mm,
-	baselinestretch=1.2,
+	baselinestretch=1.0,
 	fontsize=\scriptsize,
 	linenos,
 	breaklines
-	]{java}{code/nmapPort.kt}
+	]{kotlin}{code/nmapPort.kt}
 	\caption{Data Classes para la información de un puerto en Nmap}
 	
 	\label{code:nmapPort}
 \end{listing}
 
-\section{Peristencia de datos}
+\section{Persistencia de datos}
 
 \section{Obtención de información de medios externos}
 
-\section{Hilos, Tareas y paralelizacion}
+\section{Hilos, Tareas y paralelización}
+
+\section{Interfaz gráfica}
 
 
