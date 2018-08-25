@@ -262,6 +262,146 @@ Por último una vez leído ese fichero a medida que se va leyendo ese fichero se
 
 \section{Persistencia de datos}
 
+A día de hoy prácticamente cualquier aplicación, independientemente de si es una aplicación móvil o una aplicación para cualquier otro sistema, requiere almacenar datos de manera persistente. Ya sea desde simples valores para guardar configuraciones o ajustes de usuario a todo un conjunto de datos que se genera, gestiona y define el funcionamiento de dicha aplicación.
+
+En el caso de nuestra aplicación, que tiene cuyo objetivo principal analizar redes informáticas y obtener información, necesitaremos guardar la información de cada uno de esos análisis para que el usuario la tenga siempre accesible en todo momento.
+
+La persistencia de datos una aplicación se puede implementar de diversas maneras, y la elección de una manera u otra obedece a varios factores. Hay que tener en cuenta, entre otras cosas, el volumen de datos que se vaya a generar, la frecuencia con la que se van a modificar esos datos o si esos datos van a ser transferidos en algún momento.
+
+A grosso modo se pueden dividir las formas de implementar persistencia de datos en dos principales tipos: el uso de ficheros o el uso de bases de datos.
+
+El uso de ficheros es el modo más simple de almacenar datos. Consiste en guardar los datos escribiendo en ficheros y en obtener datos leyendo de ellos. Esos ficheros pueden contener los datos en sí mismos o junto a algún tipo de estructura, siendo esta la más sencilla de mantener. Como ejemplos de datos estructurados tenemos una serie de formatos como XML, CSV o JSON.
+
+Por otra parte, tenemos el uso de bases de datos. A medida que los datos crecen en complejidad y en número, se vuelve cada vez más complicado el acceso lectura y escritura dichos datos. El uso de bases de datos permite almacenar una gran cantidad de datos relacionados entre ellos, de los cuales podemos obtener información concreta y modificar la información más concreta mediante lenguajes como SQL.
+
+A la hora de elegir entre una de las dos para nuestra aplicación debemos tener en cuenta que el uso de bases de datos permite mayor escalabilidad y nos permite gestionar mejor los datos que son generados. Aun añadiendo otra capa más, como es sistema de gestión de bases de datos, que a priori resulta más costoso computacionalmente respecto al uso de ficheros, a la larga va a ser la mejor opción para guardar los datos de nuestra aplicación.
+
+Una vez elegido que vamos a implementar la persistencia de datos usando bases de datos el siguiente paso a realizar es  elegir qué sistema de gestión de bases de datos vamos a utilizar. En este caso la elección resulta bien sencilla. El propio SDK de Android implementa funcionalidad para poder trabajar con bases de datos SQLite. SQLite es un sistema de gestión de bases de datos relacional basado en SQL qué es conocido por ser ligero y eficiente.
+
+\subsection{Diseño de la base de datos}
+
+El diseño de nuestra base de datos resultado sumamente simple. Únicamente queremos guardar la información de una serie de escaneos. Sabemos que un escaneo al final está compuesto de la información de una serie de nodos y, a su vez, de cierta información secundaria, como la fecha que se la que se ha hecho o el nombre de la red. Cada nodo tiene su propia información, desde el fabricante del dispositivo a la dirección IP o la lista de puertos que tiene abiertos, entre otros. El modelo que se plantea para esta base datos es sumamente sencillo y se muestra en la FIGURA.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{db-tables}
+	\caption{Arquitectura de Room e interrelación entre sus diferentes componentes}
+	\label{fig:db-tables}
+\end{figure}
+
+Cómo podemos observar solo contamos únicamente con cuatro tablas (se han omitido las tablas generadas automáticamente por Android). Una para cada escaneo, otra para las diferentes estadísticas sobre cada escaneo, otra para que la información de cada nodo y una última para la información de de un puerto de un nodo concreto. Este caso se ha optado por almacenar esta información, pero resultaría fácilmente escalable simplemente añadiendo más campos en nuestra base de datos.
+
+\subsection{Implementación de la base de datos}
+
+Tras tener la base de datos diseñada debemos implementar la nuestra aplicación. Implementar una base de datos en Android se puede hacer de dos maneras.La primera, la manera tradicional, es utilizar la API estándar de Android para interactuar con bases de datos SQLite. Esta manera implica que debemos introducir nuestras sentencias SQL y ejecutarlas nosotros mediante las diferentes funciones y métodos que nos ofrece la API.
+
+Una alternativa a esta API estándar sería el uso de la librería \textit{Room}\footnote{\url{https://developer.android.com/topic/libraries/architecture/room}}. Esta librería es una de las librerías que forman parte de lo que sedenomina Android Architecture Components. los Architecture Components son diferentes librerías pensadas para solucionar problemas que surgen a la hora de desarrollar aplicaciones en Android y simplificar en gran medida el desarrollo de ciertos tipos de funcionalidad.
+
+Room está pensado para abstraernos de toda la lógica de SQL y permitirnos interactuar con la base de datos de una manera más limpia y natural. A abstraer toda esa capa de composición de sentencias SQL para realizar nuestras consultas y modificaciones de la base de datos, el código a mantener resulta muchísimo más sencillo y elegante.
+
+Para lograr esto se basa en una arquitectura compuesta de tres bloques o componentes principales. Dicha arquitectura se puede observar en la FIGURA.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{room-architecture}
+	\caption{Arquitectura de Room e interrelación entre sus diferentes componentes}
+	\label{fig:room-architecture}
+\end{figure}
+
+El primero es el componente \textit{Database}. Este componente es el que nos permite realizar tareas con la base de datos a nivel global. Desde definir las diferentes tablas que pueda haber a obtener la instancia de la base de datos para poder trabajar con ella.
+
+\begin{listing}[H]
+	\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]{kotlin}{code/roomDatabase.kt}
+	\caption{Implementación de la clase AppDatabase}
+	
+	\label{code:roomDatabase}
+\end{listing}
+
+En el código \ref{code:roomDatabase} se muestra la  implementación de ese componente en nuestra aplicación. Aún no habiendo visto nunca cómo funciona Room se pueden incluir ciertas cosas examinando el código. La primera es que se define mediante anotaciones ciertas clases. Esas clases son las que definen cada una de las tablas que vamos a tener en nuestra base de datos. En Room, las tablas son conocidas como \textit{Entities}, que es otro de los tres componentes de Room. También se puede observar que se añaden una serie de funciones que contienen la nomenclatura \textit{DAO}. Esas funciones son las que nos van a permitir obtener los diferentes DAOs que puedan existir en Room, siendo este tipo de componente el tercero y último.
+
+Como se ha mencionado, las Entities corresponden a cada una de las tablas que existe en la base de datos. Para reflejar esto en una clase de tipo Entity, de la misma manera que se hacía para el componente Database, se utilizan anotaciones.
+
+\begin{listing}[H]
+	\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]{kotlin}{code/roomEntities.kt}
+	\caption{Implementación de diferentes clases Entity}
+	
+	\label{code:roomEntities}
+\end{listing}
+
+Cómo se puede observar en el ejemplo que se ha puesto en el CÓDIGO, se utilizan anotaciones para definir una entidad o para definir aspectos como la clave primaria de una tabla de la base de datos. Cada uno de los atributos de esa clase equivaldría a un campo de la tabla. Los tipos de datos de la tabla equivalen a los tipos de datos que se han utilizado en los atributos de la clase. Para tipos de atributos complejos Room implementa un componente llamado \textit{Converters} que nos permite implementar funciones que convierten tipos de datos complejos, como imágenes, datos personalizados o clases complejas, en tipos de datos almacenables en una base de datos, de tal manera que se ejecuten automáticamente a la hora de interactuar con la base de datos.
+
+Por último, el tercer componente que se ha mencionado son los \textit{DAO} (Data Access Object). Estos componentes son interfaces que definen una serie de funciones. Esas funciones son la que se utilizarán para hacer consultas o modificaciones en la base de datos. El uso de sentencias SQL como \textit{SELECT}, \textit{INSERT}, \textit{UPDATE} o \textit{DELETE} queda encapsulado mediante el uso de estas funciones, que tanto reciben como devuelven, dependiendo el caso, tipos de datos manipulables a nivel de código. Cada interfaz DAO permite interactuar con una o mas tablas, siendo lo mas recomendable implementar una para cada tabla definida.
+
+\begin{listing}[H]
+	\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]{kotlin}{code/roomSelect.kt}
+	\caption{Ejemplo de una interfaz DAO para interactuar con la base de datos}
+	
+	\label{code:roomDao}
+\end{listing}
+
+Como se puede apreciar en el código \ref{code:roomDao}, mediante anotaciones es donde se especifican las sentencias SQL a las que equivale la ejecución de esas funciones.
+
+Por lo tanto para ejecutar algún tipo de operación en la base datos simplemente hay que combinar estos tres elementos, para disponer de herramientas para definir el modelo de la base de datos e interactuar con la instancia de la base de datos. Por poner unos ejemplos, en los códigos \ref{code:roomSelect} y \ref{code:roomInsert} se muestran partes concretas de la aplicación en las que se realiza una consulta y una inserción en la base de datos, respectivamente.
+
+
+\begin{listing}[H]
+	\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]{kotlin}{code/roomSelect.kt}
+	\caption{Ejemplo de obtención de información de la base de datos Room}
+	
+	\label{code:roomSelect}
+\end{listing}
+
+\begin{listing}[H]
+	\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]{kotlin}{code/roomInsert.kt}
+	\caption{Ejemplo de inserción de información en la base de datos Room}
+	
+	\label{code:roomInsert}
+\end{listing}
+
+Se ha podido ir percibiendo, en ningún momento se ha implementado código que realmente ejecute sentencias SQL. Aquí reside la magia de Room. Room abstrae completamente la programación de ese tipo de código siendo la propia librería quién se encarga de generar ese código a la hora de compilar la aplicación.
+
+Las ventajas de utilizar Room con respecto a la API estándar de SQLite son obvias. Tanto es así que la propia documentación ''recomienda encarecidamente usar Room en vez de SQLite''\footcite{room-training}. En primer lugar, abstraemos completamente la generación de código donde concatenamos, generamos y ejecutamos sentencias SQL. Por otra parte, el código que gestiona la base de datos resulta mucho más claro y conciso limitándose a consistir en un par de llamadas a funciones. Por último, la creación de las tablas de la base de datos en sí misma se hace también de manera automática. Incluso tenemos herramientas para poder generar diferentes versiones de la propia base datos a medida que la aplicación vaya escalando, guardándose historiales de versiones de la base de datos para en caso de revertir cambios volver a la estructura de una de las bases de datos anteriores.
+
 \section{Obtención de información de medios externos}
 
 \section{Hilos, Tareas y paralelización}
