@@ -246,3 +246,25 @@
 \setmintedinline{breakanywhere}
 
 \renewcommand\listoflistingscaption{Índice de códigos fuente}
+
+\newcommand{\custominputminted}{\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\scriptsize,
+	linenos,
+	breaklines
+	]
+}
+
+\newcommand{\customtinyinputminted}{\inputminted[
+	tabsize=4,
+	frame=single,
+	framesep=2mm,
+	baselinestretch=1.0,
+	fontsize=\tiny,
+	linenos,
+	breaklines
+	]
+}

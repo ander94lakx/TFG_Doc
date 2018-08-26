@@ -94,15 +94,7 @@ La localización donde guardemos los binarios de Nmap es fundamental, ya que seg
 Toda este volcado de binarios de Nmap para el dispositivo se gestiona desde una única clase en la aplicación llamada \mintinline{java}{NmapInstaller}. Esa clase, que implementa el patrón Singleton mediante el uso de la palabra clave \mintinline{java}{object} de Kotlin, contiene todo el código necesario para volcar los binarios de Nmap en el dispositivo.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/install.kt}
+	\custominputminted{kotlin}{code/install.kt}
 	\caption{Función que instala Nmap en el dispositivo}
 
 	\label{code:install}
@@ -121,15 +113,7 @@ Todo el código que permite ejecutar en el mapa se encuentra en otra clase llama
 Lo que tenemos que hacer para ejecutar un escaneo es ejecutar el binario de Nmap con los parámetros correspondientes. Para ejecutar en el mar basta simplemente con lanzar un proceso que llame a la ejecución del binario. La forma de ejecutar un binario es muy sencilla, y consiste en crear un proceso para una shell de Linux y en el llamar al ejecutable de Nmap. Para poder interactuar con ese proceso necesitamos configurar la entrada y la salida de ese proceso para poder enviarle información y recibirla. Eso se realizan la función \mintinline{java}{startProcess()}, que se muestra a continuación.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/startProcess.kt}
+	\custominputminted{kotlin}{code/startProcess.kt}
 	\caption{Función para arrancar el proceso con la shell que ejecutará Nmap}
 	
 	\label{code:startProcess}
@@ -138,15 +122,7 @@ Lo que tenemos que hacer para ejecutar un escaneo es ejecutar el binario de Nmap
 Después de esto debemos construir un comando de Nmap. Este comando es básicamente lo que haríamos si estuviéramos ejecutando Nmap en la terminal de nuestro ordenador. En nuestro caso solo queremos realizar una serie de escaneos concretos a nodos puntuales, por lo tanto construir este comando es tan sencillo como concatenar unos pocos strings. La función que realiza esto se muestra a continuación.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/commandBuilder.kt}
+	\custominputminted{kotlin}{code/commandBuilder.kt}
 	\caption{Función que crea el comando a ejecutar de Nmap}
 	
 	\label{code:commandBuilder}
@@ -159,15 +135,7 @@ Las ventajas de utilizar un fichero XML para cobrar esa información son obvias.
 Una vez realizado el escaneo y habiéndose generado ese fichero XML, solo queda obtener la información de ese fichero y deshacernos de todos los recursos ya innecesarios, como el propio fichero XML una vez leído, o el propio proceso de la shell, que consume recursos no necesarios.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/runScan.kt}
+	\custominputminted{kotlin}{code/runScan.kt}
 	\caption{Función con todo el proceso de ejecución de un escaneo en Nmap}
 	
 	\label{code:runScan}
@@ -178,15 +146,7 @@ Una vez realizado el escaneo y habiéndose generado ese fichero XML, solo queda 
 La tercera y última parte del proceso para integrar Nmap es leer los datos que han sido generados. Como se ha mencionado dichos datos se encuentran en un fichero XML. Por lo tanto, necesitaremos una clase qué obtenga la informacion de dicho fichero. A este tipo de clases se le suele denominar \textit{parser} y básicamente van leyendo las diferentes etiquetas de los ficheros XML y obteniendo su información. A continuación se muestra ciertas partes del código para hacerse la idea de cómo es leer de manera jerarquizada y estructura de un fichero XML. No se muestra toda la implementación, ya que el tamaño de la implementación de un parser de XML es directamente proporcional al tamaño de la jerarquía de los elementos que contiene.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\tiny,
-	linenos,
-	breaklines
-	]{kotlin}{code/nmapParser.kt}
+	\customtinyinputminted{kotlin}{code/nmapParser.kt}
 	\caption{Extracto de la implementación de un parser de un XML de Nmap}
 	
 	\label{code:nmapParser}
@@ -195,15 +155,7 @@ La tercera y última parte del proceso para integrar Nmap es leer los datos que 
 Almacenar la información en XML la almacena jerarquizada en cierta manera la manera en la que Nmap guarda información estructurada en un fichero XML es como la que se muestra en el Código \ref{code:regular-scan}:
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\tiny,
-	linenos,
-	breaklines
-	]{xml}{code/regular-scan.xml}
+	\customtinyinputminted{xml}{code/regular-scan.xml}
 	\caption{Fichero XML con la información de un escaneo estándar de Nmap}
 	
 	\label{code:regular-scan}
@@ -216,45 +168,21 @@ Dentro de la información generada para cada host, aunque depende del tipo de es
 Por último una vez leído ese fichero a medida que se va leyendo ese fichero se va guardando la información en diferentes clases, creadas específicamente para guardar los datos obtenidos de Nmap antes de ser procesados. Dichas clases se encuentran dentro del paquete \textit{model}. En concreto, todas las clases que se usan para datos obtenidos directamente de Nmap llevan el prefijo \mintinline{java}{Nmap}, para diferenciarlas de clases del modelo relacionadas con la estructura de la información en la base de datos. En los Códigos \ref{code:nmapScan}, \ref{code:nmapHost} y \ref{code:nmapPort} se muestran unos ejemplos.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/nmapScan.kt}
+	\custominputminted{kotlin}{code/nmapScan.kt}
 	\caption{Data Classes para la información de un scan en Nmap}
 	
 	\label{code:nmapScan}
 \end{listing}
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.2,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/nmapHost.kt}
+	\custominputminted{kotlin}{code/nmapHost.kt}
 	\caption{Data Classes para la información de un host en Nmap}
 	
 	\label{code:nmapHost}
 \end{listing}
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/nmapPort.kt}
+	\custominputminted{kotlin}{code/nmapPort.kt}
 	\caption{Data Classes para la información de un puerto en Nmap}
 	
 	\label{code:nmapPort}
@@ -311,15 +239,7 @@ Para lograr esto se basa en una arquitectura compuesta de tres bloques o compone
 El primero es el componente \textit{Database}. Este componente es el que nos permite realizar tareas con la base de datos a nivel global. Desde definir las diferentes tablas que pueda haber a obtener la instancia de la base de datos para poder trabajar con ella.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/roomDatabase.kt}
+	\custominputminted{kotlin}{code/roomDatabase.kt}
 	\caption{Implementación de la clase AppDatabase}
 	
 	\label{code:roomDatabase}
@@ -330,15 +250,7 @@ En el código \ref{code:roomDatabase} se muestra la  implementación de ese comp
 Como se ha mencionado, las Entities corresponden a cada una de las tablas que existe en la base de datos. Para reflejar esto en una clase de tipo Entity, de la misma manera que se hacía para el componente Database, se utilizan anotaciones.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/roomEntities.kt}
+	\custominputminted{kotlin}{code/roomEntities.kt}
 	\caption{Implementación de diferentes clases Entity}
 	
 	\label{code:roomEntities}
@@ -349,15 +261,7 @@ Cómo se puede observar en el ejemplo que se ha puesto en el CÓDIGO, se utiliza
 Por último, el tercer componente que se ha mencionado son los \textit{DAO} (Data Access Object). Estos componentes son interfaces que definen una serie de funciones. Esas funciones son la que se utilizarán para hacer consultas o modificaciones en la base de datos. El uso de sentencias SQL como \textit{SELECT}, \textit{INSERT}, \textit{UPDATE} o \textit{DELETE} queda encapsulado mediante el uso de estas funciones, que tanto reciben como devuelven, dependiendo el caso, tipos de datos manipulables a nivel de código. Cada interfaz DAO permite interactuar con una o mas tablas, siendo lo mas recomendable implementar una para cada tabla definida.
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/roomSelect.kt}
+	\custominputminted{kotlin}{code/roomDao.kt}
 	\caption{Ejemplo de una interfaz DAO para interactuar con la base de datos}
 	
 	\label{code:roomDao}
@@ -369,30 +273,14 @@ Por lo tanto para ejecutar algún tipo de operación en la base datos simplement
 
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/roomSelect.kt}
+	\custominputminted{kotlin}{code/roomSelect.kt}
 	\caption{Ejemplo de obtención de información de la base de datos Room}
 	
 	\label{code:roomSelect}
 \end{listing}
 
 \begin{listing}[H]
-	\inputminted[
-	tabsize=4,
-	frame=single,
-	framesep=2mm,
-	baselinestretch=1.0,
-	fontsize=\scriptsize,
-	linenos,
-	breaklines
-	]{kotlin}{code/roomInsert.kt}
+	\custominputminted{kotlin}{code/roomInsert.kt}
 	\caption{Ejemplo de inserción de información en la base de datos Room}
 	
 	\label{code:roomInsert}
@@ -400,7 +288,7 @@ Por lo tanto para ejecutar algún tipo de operación en la base datos simplement
 
 Se ha podido ir percibiendo, en ningún momento se ha implementado código que realmente ejecute sentencias SQL. Aquí reside la magia de Room. Room abstrae completamente la programación de ese tipo de código siendo la propia librería quién se encarga de generar ese código a la hora de compilar la aplicación.
 
-Las ventajas de utilizar Room con respecto a la API estándar de SQLite son obvias. Tanto es así que la propia documentación ''recomienda encarecidamente usar Room en vez de SQLite''\footcite{room-training}. En primer lugar, abstraemos completamente la generación de código donde concatenamos, generamos y ejecutamos sentencias SQL. Por otra parte, el código que gestiona la base de datos resulta mucho más claro y conciso limitándose a consistir en un par de llamadas a funciones. Por último, la creación de las tablas de la base de datos en sí misma se hace también de manera automática. Incluso tenemos herramientas para poder generar diferentes versiones de la propia base datos a medida que la aplicación vaya escalando, guardándose historiales de versiones de la base de datos para en caso de revertir cambios volver a la estructura de una de las bases de datos anteriores.
+Las ventajas de utilizar Room con respecto a la API estándar de SQLite son obvias. Tanto es así que la propia documentación ''recomienda encarecidamente usar Room en vez de SQLite''\cite{room-training}. En primer lugar, abstraemos completamente la generación de código donde concatenamos, generamos y ejecutamos sentencias SQL. Por otra parte, el código que gestiona la base de datos resulta mucho más claro y conciso limitándose a consistir en un par de llamadas a funciones. Por último, la creación de las tablas de la base de datos en sí misma se hace también de manera automática. Incluso tenemos herramientas para poder generar diferentes versiones de la propia base datos a medida que la aplicación vaya escalando, guardándose historiales de versiones de la base de datos para en caso de revertir cambios volver a la estructura de una de las bases de datos anteriores.
 
 \section{Obtención de información de medios externos}
 
