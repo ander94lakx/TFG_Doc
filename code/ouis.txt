@@ -1,0 +1,22 @@
+// ...
+10:DA:43	Netgear
+10:DD:B1	Apple	Apple, Inc.
+10:DD:F4	MaxwayEl	Maxway Electronics CO.,LTD
+10:DE:E4	Automati	automationNEXT GmbH
+10:DF:8B	Shenzhen	Shenzhen CareDear Communication Technology Co.,Ltd
+10:DF:FC	Siemens	Siemens AG
+10:E2:D5	QiHardwa	Qi Hardware Inc.
+10:E3:C7	SeohwaTe	Seohwa Telecom
+10:E4:AF	AprLlc	Apr, Llc
+10:E6:8F	Kwangsun	Kwangsung Electronics Korea Co.,Ltd.
+10:E6:AE	SourceTe	Source Technologies, LLC
+10:E7:C6	HewlettP	Hewlett Packard
+10:E8:78	Nokia
+10:E8:EE	Phasespa	PhaseSpace
+10:EA:59	CiscoSpv	Cisco SPVTG
+10:EE:D9	CanogaPe	Canoga Perkins Corporation
+10:F0:05	IntelCor	Intel Corporate
+10:F1:63	Tnk	Tnk Co.,Ltd
+10:F1:F2	LgElectr	LG Electronics (Mobile Communications)
+10:F3:11	Cisco	Cisco Systems, Inc
+// ...

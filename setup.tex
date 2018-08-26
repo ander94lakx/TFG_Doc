@@ -246,6 +246,8 @@
 % (minted have better syntax highlighting than lstlisting for code)
 \usemintedstyle{vs}
 
+\newenvironment{code}{\captionsetup{type=listing}}{}
+
 \setmintedinline{breakanywhere}
 
 \renewcommand\listoflistingscaption{Índice de códigos fuente}
@@ -256,7 +258,6 @@
 	framesep=2mm,
 	baselinestretch=1.0,
 	fontsize=\scriptsize,
-	linenos,
 	breaklines
 	]
 }
@@ -267,7 +268,6 @@
 	framesep=2mm,
 	baselinestretch=1.0,
 	fontsize=\tiny,
-	linenos,
 	breaklines
 	]
 }

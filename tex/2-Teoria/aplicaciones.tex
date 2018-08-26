@@ -20,7 +20,7 @@ No es hasta la década de los 80, en la cual los ordenadores personales empezaro
 
 Cabe mencionar que el malware en sí no tiene porque tener la capacidad para replicarse; se puede considerar malware cualquier pieza de software que busque un uso malintencionado o malicioso del sistema.
 
-Dentro de la categoría de malware se han ido desarrollando diferentes piezas de software que tienen sus particularidades. Dependiendo de su funcionamiento o de los usos para los que esté diseñado el malware se puede clasificar en diferentes categorías, algunas de las cuales tienen mayor auge que otras a día de hoy. En la figura \ref{fig:malware-symantec} se puede observar una serie de datos del crecimiento y descenso de diferentes tipos de malware durante los últimos años.
+Dentro de la categoría de malware se han ido desarrollando diferentes piezas de software que tienen sus particularidades. Dependiendo de su funcionamiento o de los usos para los que esté diseñado el malware se puede clasificar en diferentes categorías, algunas de las cuales tienen mayor auge que otras a día de hoy. En la \autoref{fig:malware-symantec} se puede observar una serie de datos del crecimiento y descenso de diferentes tipos de malware durante los últimos años.
 
 \begin{figure}[H]
 	\centering
@@ -45,7 +45,7 @@ Otro tipo de malware famoso son los troyanos. El nombre de troyano proviene del 
 
 Según McAfee Labs \cite{mcafee-predictions} (actualmente parte de Intel) el ransomware es una de las mayores amenazas a día de hoy. El ransomware es un tipo de malware informático que busca beneficio económico en base a la extorsión hacia los usuarios. Para ello esta clase de malware cifra los archivos de los usuarios para que sean inaccesibles para ellos, de tal manera que solo mediante el pago de cierta cantidad económica puedan recuperar dichos archivos.
 
-Existen varias familias de ransomware, entre los que destacan \emph{CryptoWall 3}, \emph{CTB-Locker} o \emph{CryptoLocker}. El concepto de familias proviene de que en su mayoría se tratan del mismo malware con prácticamente el mismo funcionamiento, pero con ligeras variaciones es su código fuente que les permiten eludir las posibles medidas de seguridad. En la figura \ref{fig:ransomware} se puede observar su crecimiento durante estos últimos años.
+Existen varias familias de ransomware, entre los que destacan \emph{CryptoWall 3}, \emph{CTB-Locker} o \emph{CryptoLocker}. El concepto de familias proviene de que en su mayoría se tratan del mismo malware con prácticamente el mismo funcionamiento, pero con ligeras variaciones es su código fuente que les permiten eludir las posibles medidas de seguridad. En la \autoref{fig:ransomware} se puede observar su crecimiento durante estos últimos años.
 
 \begin{figure}[H]
 	\centering
@@ -99,7 +99,7 @@ Esto tiene dos ventajas. La primera, que el cifrado por hardware, al realizarse 
 
 Además, todos los dispositivos iOS tienen un sistema de cifrado mediante hardware y AES-256 que se sitúa entre la memoria principal y el almacenamiento flash \cite{ios-sec-guide}, de tal manera que los datos almacenados en los dispositivos se mantienen cifrados sin que se pierda rendimiento en ello. Para cada sistema de cifrado se crea identificadores únicos tanto par cada usuario (UID) como para cada grupo distinto de dispositivos (GID), ambos integrados en el propio hardware. Cada UID es único y no es conocido ni por Apple ni por ninguna aplicación ni usuario. Cada GID es común a una familia de dispositivos y se usa para distinguirlos entre sí. Esto hace que los datos que se almacenan sean altamente difíciles de descifrar.
 
-Las operaciones de cifrado y descifrado concretas siguen el esquema que se muestra en la Figura \ref{fig:ios-data-encrypt} , haciendo uso también de una contraseña propia elegida por el usuario, la que se muestra en el diagrama con el nombre de \textit{Passcode Key}.
+Las operaciones de cifrado y descifrado concretas siguen el esquema que se muestra en la \autoref{fig:ios-data-encrypt} , haciendo uso también de una contraseña propia elegida por el usuario, la que se muestra en el diagrama con el nombre de \textit{Passcode Key}.
 
 \begin{figure}[H]
 	\centering
@@ -110,7 +110,7 @@ Las operaciones de cifrado y descifrado concretas siguen el esquema que se muest
 
 \subsubsection{Seguridad en Android}
 
-El modelo de seguridad en Android se diferencia del modelo de iOS en varios aspectos. Más que en un fuerte cifrado a todos los niveles, el cual también usa pero en menor medida, el enfoque se basa en hacer lo más segura posible cada aplicación. Esto es lógico teniendo en cuenta que, por un lado, la tienda de aplicaciones de Android, la \textit{Play Store}\footnote{\url{https://play.google.com/store/apps}}, es menos estricta que la de iOS y que, por otro lado, Google (propietaria de Android) no fabrica los dispositivos que integran dicho sistema. Por ello, la arquitectura de software del sistema resulta más jerárquica, y es fundamental para las diversas medidas de seguridad que se implementan. En la Figura \ref{fig:android-arch} se muestran las diferentes capas de dicha arquitectura. 
+El modelo de seguridad en Android se diferencia del modelo de iOS en varios aspectos. Más que en un fuerte cifrado a todos los niveles, el cual también usa pero en menor medida, el enfoque se basa en hacer lo más segura posible cada aplicación. Esto es lógico teniendo en cuenta que, por un lado, la tienda de aplicaciones de Android, la \textit{Play Store}\footnote{\url{https://play.google.com/store/apps}}, es menos estricta que la de iOS y que, por otro lado, Google (propietaria de Android) no fabrica los dispositivos que integran dicho sistema. Por ello, la arquitectura de software del sistema resulta más jerárquica, y es fundamental para las diversas medidas de seguridad que se implementan. En la \autoref{fig:android-arch} se muestran las diferentes capas de dicha arquitectura. 
 
 \begin{figure}[H]
 	\centering
@@ -129,7 +129,7 @@ La esencia de la seguridad en Android reside en controlar y limitar la interacci
 	\item Un sistema de permisos tanto a nivel de usuario como al nivel de cada aplicación concreta para controlar las acciones de los usuarios y las aplicaciones.
 \end{itemize}
 
-Este enfoque hace que, por una parte, el propio Android mediante su arquitectura y el uso de una VM (Virtual Machine) específicamente creada para el sistema (como se puede observar en la Figura \ref{fig:android-arch}) ofrezca un repertorio de mecanismos de seguridad que hacen de él un sistema relativamente seguro. Por otra parte, también pone empeño en que los desarrolladores tienen la necesidad de implementar medidas de seguridad en sus aplicaciones para garantizar la seguridad de las mismas. Para ello, el SDK de Android proporciona acceso a un gran número de utilidades como, entre otras, utilidades de cifrado, de manejo de credenciales o de intercambio de mensajes.
+Este enfoque hace que, por una parte, el propio Android mediante su arquitectura y el uso de una VM (Virtual Machine) específicamente creada para el sistema (como se puede observar en la \autoref{fig:android-arch}) ofrezca un repertorio de mecanismos de seguridad que hacen de él un sistema relativamente seguro. Por otra parte, también pone empeño en que los desarrolladores tienen la necesidad de implementar medidas de seguridad en sus aplicaciones para garantizar la seguridad de las mismas. Para ello, el SDK de Android proporciona acceso a un gran número de utilidades como, entre otras, utilidades de cifrado, de manejo de credenciales o de intercambio de mensajes.
 
 %------------------------------------------------------------------------------
 
