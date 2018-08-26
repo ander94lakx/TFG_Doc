@@ -1,49 +1,58 @@
 \KOMAoptions{twoside = false}
 
-\begin{titlepage}
-	\includegraphics[width=0.4\textwidth]{logoEHU}
-	\hspace{\fill}
-	\includegraphics[width=0.4\textwidth]{logoEUI}
-	\vspace{1.5cm}
-	\begin{center}
+\afterpage{
+	\newgeometry{margin=1.5cm}
+
+	\begin{titlepage}
 		
-			\vspace{0.5cm}
+		\includegraphics[height=2.5cm]{logoEHU}
+		\hspace{\fill}
+		\includegraphics[height=2.5cm]{logoEUI}
 		
-		{\Huge \textbf{\thetitle}}
+		\vspace{3.5cm}
 		
-			\vspace{3cm}
-		
-		{\large \textbf{Memoria del Trabajo de Fin de Grado}}
-		
-			\vspace{0.5cm}
-		
-		{\normalsize presentada para optar al grado de}
-		
-			\vspace{0.5cm}
+		\begin{center}
 			
-		{\Large Ingeniería Informática de Gestión y Sistemas de Información}
+			{\Huge \textbf{\thetitle}}
+			
+				\vspace{3cm}
+			
+			{\Large \textbf{Memoria del Trabajo de Fin de Grado}}
+			
+				\vspace{0.5cm}
+			
+			{\normalsize presentada para optar al Grado de}
+			
+				\vspace{0.5cm}
+				
+			{\LARGE Ingeniería Informática de Gestión y Sistemas de Información}
+			
+				\vspace{1.5cm}
+			
+			{\normalsize por}
+	
+			\LARGE{\theauthor}
+			
+				\vspace{1cm}
+			
+			{\large Director: Pablo González Nalda}
+			
+				\vspace{2cm}
+			
+			{\Large\textit{\today}}
 		
-			\vspace{1.5cm}
-		
-		{\normalsize por}
+			
+		\end{center}
+	
+		%\vspace{\fill}
+		%\includegraphics[height=1cm]{cclogolarge}
+		%\hspace{\fill}
+		%includegraphics[height=1cm]{by-sa}
+	\end{titlepage}
 
-		\LARGE{\theauthor}
-		
-			\vspace{1cm}
-		
-		{\large Director: Pablo González Nalda}
-		
-			\vspace{2cm}
-		
-		{\Large\textit{Febrero de 2018}}
+	\clearpage
+	\restoregeometry
 
-	\end{center}
-%	\vspace{2cm}
-%	\hspace{\fill}\upp
-%	\includegraphics[width=3cm]{cclogolarge}
-%	\hspace{1cm}
-%	\includegraphics[width=2cm]{by-sa}
-%	\hspace{\fill}
-\end{titlepage}
+}
 
 \KOMAoptions{twoside}
