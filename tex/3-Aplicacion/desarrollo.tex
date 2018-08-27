@@ -2,18 +2,17 @@
 
 \epigraph{\textit{''Los programas deben ser escritos para que los lean las personas, y sólo incidentalmente, para que lo ejecuten las máquinas''}}{--- Abelson and Sussman}
 
-\begin{comment}
 Tras haber explicado en el capítulo anterior las diversas herramientas a usar para el desarrollo de la aplicación, en este capítulo se explicaran aspectos sobre el diseño de la aplicación y las diferentes decisiones tomadas a la hora de realizar dicho diseño.
 
-El diseño de la aplicación es simple minimista. El objetivo del proyecto consiste en hacer una aplicación lo mas fácil de usar y con la mayor claridad posible de cara al usuario. Por ello, se ha optado por un enfoque que reduzca el numero de elementos al mínimo, ademas de que se adapta perfectamente a los estándares de diseño de Materia Design, que son los recomendados a la hora de diseñar aplicaciones para Android.
+El diseño de la aplicación es simple y minimista. El objetivo del proyecto consiste en hacer una aplicación lo más fácil de usar y con la mayor claridad posible de cara al usuario. Por ello, se ha optado por un enfoque que reduzca el numero de elementos al mínimo, además de que se adapta perfectamente a los estándares de diseño de Material Design\footnote{\url{https://material.io/design/}}, que son los recomendados a la hora de diseñar aplicaciones para Android.
 
 \section{Interfaz gráfica}
 
 Para la interfaz gráfica se ha optado por hacer un diseño primero en papel para después, en base a ese diseño y esa distribución de ventanas, elaborar en Android Studio toda la interfaz gráfica. Se puede observar un diseño primitivo en la siguiente imagen.
 
-\begin{figure}[H] % TODO: REPLACE THIS PLACEHOLDER WITH THE TRUE IMAGE
+\begin{figure}[ht]
 	\centering
-	\includegraphics[width=200px]{placeholder}
+	\includegraphics[width=\textwidth]{gui-mockup}
 	\caption{Mockup inicial de la GUI de la aplicación}
 	\label{fig:mockup}
 \end{figure}
@@ -39,7 +38,16 @@ El Fragment, aunque también representa una parte de la UI de la aplicación, de
 \end{figure}
 
 
-En Android, a la hora de diseñar aplicaciones, se usan fragments para partes reutilizables y comunes de una UI y se usan las activitys para controlar el ciclo de vida de la aplicacion. En uan aplicación de android abierta siempre se encuentra activa una activity, que muestra algun tipo de interfaz.
+En Android, a la hora de diseñar aplicaciones, se usan Fragments para partes reutilizables y comunes de una UI y se usan las Activities para controlar el ciclo de vida de la aplicación. En una aplicación de Android abierta siempre se encuentra activa una Activity, que muestra algún tipo de interfaz.
 
-La apicacion dispone de la siguiente lista de activitys y fragments
-\end{comment}
+La aplicación dispone de una serie Activities y Fragments implementados, cuya lista se muestra en la \autoref{fig:views-list}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{views-list}
+	\caption{Lista de clases con las Activities y Fragments implementados en la aplicación}
+	\label{fig:views-list}
+\end{figure}
+
+
+{\color{red} Falta rellenar este capítulo, que básicamente consiste en explicar las diferentes partes de la aplicación, con capturas y referencias a elementos de diseño y Material Design}
