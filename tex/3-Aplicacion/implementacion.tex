@@ -367,8 +367,95 @@ Por último mencionar que estos elementos contienen relativamente una gran canti
 
 Se ha optado por utilizar este modelo (descargar en cada inicio de la aplicación toda la información de medios externos), y no guardarla de manera persistente en nuestra aplicación. Esto es debido principalmente a que descargarla no es una tarea demasiado costosa y podemos tener siempre la información actualizada. Esto requiere que siempre que lancemos la aplicación se tenga conexión a Internet, pero como vamos a requerir de dicha conexión para aprovechar cualquiera de las funcionalidades, esa conexión, de una manera u otra, siempre va a ser necesaria.
 
-
 \section{Hilos, Tareas y paralelización}
+
+Un aspecto también fundamental para entender el comportamiento de la aplicación es todo lo relacionado con la ejecución de hilos, tareas o procesos. Si bien esta aplicación en no se trata de una aplicación que esté basada en multithreading o programación paralela, se hace uso de diferentes técnicas relacionadas en ciertos puntos de la implementación. En los próximos parrafos se indagará en dichos aspectos.
+
+Por una lado (y esto es un aspecto que ya se ha mencionado previamente), la ejecución de Nmap es completamente independiente a la ejecución de la aplicación. Android, como cualquier sistema operativo basado en Linux,tiene como elementos fundamentales de ejecución los procesos. Esto quiere decir que, en el sistema, tendremos todo tipo de procesos corriendo. Esos procesos pueden corresponder a aplicaciones o ser procesos del propio sistema operativo. En este caso la ejecución del binario de Nmap se lanza en un proceso independiente, uniéndose al resto de procesos que se están ejecutando en ese momento en el dispositivo.
+
+El proceso de Nmap no consiste únicamente en la ejecución del binario. El proceso en sí que se lanza consiste en la ejecución de una \textit{shell}, dentro de la cual se lanzarán los comandos que permitan ejecutar Nmap. Por lo tanto, no es que tengamos un proceso de ejecución, sino que tenemos una shell asociada que tendrá configuradas tanto la entradas como la salida para que se comuniquen con nuestra aplicación. Comunicar la entrada y la salida de un proceso es bastante sencillo, y se realiza de manera similar a como se haría con un archivo, como se muestra en el Código \ref{code:startProcess2}.
+
+\begin{code}
+	\caption{Creación del proceso, la entrada y salida para Nmap}
+	\label{code:startProcess2}
+	
+	\custominputminted{kotlin}{code/startProcess.kt}
+\end{code}
+
+En este caso concreto lo más importante es la entrada, porque es la forma en la que lanzaremos los comandos de Nmap, y por ende, ejecutar la aplicación. La salida, en este caso, no resulta importante ya que lo que hacemos al ejecutar Nmap es indicar que los resultados se guarden en un fichero XML, por lo tanto aunque tengamos abierta la salida de ese proceso y redirigida a nuestra aplicación, en principio no se hará uso de ella, únicamente para tareas puntuales de depuración.
+
+Otro de los aspectos, que también se ha mencionado ya en otras secciones, es el relacionado con los hilos o Threads de ejecución. Teniendo en cuenta que no se puede ejecutar operaciones de red en el hilo principal de ejecución de la aplicación (al menos por defecto), se han implementado ciertas partes mediante el uso de Threads. Principalmente lo que se ha implementado mediante Threads son las descargas de los diferentes archivos que se utilizan para obtener información de medios externos. Se ha programado mediante Threads de Android (que viene a ser Threads de Java) y no mediante otros mecanismos de ejecución asíncrona de código debido a la simplicidad de la implementación de un Thread y también porque las tareas a realizar no tienen complejidad a nivel de programación. Consisten en descargar y leer archivos de Internet, lo que, como se puede comprobar en el Código \ref{code:downloadThread}, se puede hacer con unas pocas líneas de código.
+
+\begin{code}
+	\caption{Ejecución de la descarga y lectura de un archivo en un Thread}
+	\label{code:downloadThread}
+	
+	\custominputminted{kotlin}{code/downloadThread.kt}
+\end{code}
+
+El tercer y último bloque dentro de toda la parte de ejecución asíncrona y paralelización de código es el usado a la hora de actualizar la interfaz gráfica. Android, al igual que muchísimos sistemas, utiliza el patrón de diseño MVC. Esto tiene una serie de ventajas, permitiendo separar la presentación o vista de la aplicación de la lógica o modelo. Con ello se logra separar la vista del resto, permitiendo poder modificarla en todo momento de manera independiente.
+
+La vista se comunica con el modelo a la hora de obtener datos mediante el uso de controladores. La forma más sencilla de cargar nuestra vista con los datos que contiene el modelo es obtener los datos del modelo interactuando con el controlador cuándo se realiza la creación de la vista.
+
+Esto en ciertas partes de la aplicación es viable, como por ejemplo en la parte en la que mostramos la lista de escaneos realizados o la parte en la que visualizamos los diferentes nodos de un escaneo concreto. En ambos casos se da la situación en la que lo que hacemos es, a la hora de cargar el Activity o el Fragment, Usar el controlador para comunicarnos con el modelo y obtener los datos para mostrarlos desde un principio.
+
+Pero hay casos en los que esto no es posible. El caso más importante a tener en cuenta es  cuando se está realizando el escaneo de una red. Al realizar el escaneo de una red vamos a tener a Nmap ejecutándose y iremos obteniendo la información que vaya sacando. Para implementar esto se pueden hacer varias aproximaciones.
+
+La primera sería lanzar la ejecución de Nmap, realizar el escaneo completo de la red (esperando mientras se realiza) y obtener la información que ha generado. El principal inconveniente de esta aproximación consiste en que no tendríamos ningún tipo de salida hasta que no terminase el escaneo completo. Esto quiere decir que no se visualizará ningún cambio en la Activity hasta finalizar. Claramente es negativo, ya que dejaríamos al usuario sin información durante un tiempo de espera muy grande. 
+
+Otra aproximación, mejor que la primera, sería ir obteniendo partes de la información e ir mostrándola en pantalla. Para realizar esto necesitamos lanzar una tarea que se ejecute de manera asíncrona y vaya realizando los escaneos por partes. Perdemos esa sencillez que nos da el hecho de escanear toda la red mediante una única ejecución de Nmap, pero ganamos la flexibilidad de poder ir obteniendo la información poco a poco.
+
+Para ello se hará uso de un \textit{AsyncTask}\footnote{\url{https://developer.android.com/reference/android/os/AsyncTask}} de Android. Un AsyncTask es un método para ejecutar una tarea de manera asíncrona en Android. Para implementar una tarea asíncrona, debemos heredar de esta clase e implementar las diferentes funciones que pide implementar. Un ejemplo vacío de la clase se muestra en el Código \ref{code:asyncTask}.
+
+\begin{code}
+	\caption{Ejemplo de la estructura de una AsyncTask}
+	\label{code:asyncTask}
+	
+	\custominputminted{kotlin}{code/asyncTask.kt}
+\end{code}
+
+Las funciones que requiere implementar son cuatro, y se enumeran a continuación:
+
+\begin{enumerate}
+	\item \mintinline{kotlin}{onPreExecute()}: Se invoca antes de ejecutarse. Normalmente se usa para inicializar valores o preparar lo necesario para la ejecución.
+	\item \mintinline{kotlin}{doInBackground(Params…)}: Se invoca ya en un Thread aparte y es donde se realiza el contenido de la tarea. Dentro de ella, se llama a la función \mintinline{kotlin}{publishProgress(Progress...)} en caso de que se quiera indicar algún tipo de progreso.
+	\item \mintinline{kotlin}{onProgressUpdate(Progress…)}: Se ejecuta cuando se ha recibido algón tipo de progreso. Normalmente se usa para actualizar la interfaz gráfica e indicar al usuario que se ha realizado progresos.
+	\item \mintinline{kotlin}{onPostExecute(Result)}: Se ejecuta una vez la tarea ha terminado, y permite interactuar con el resultado
+\end{enumerate}
+
+La implementación de una AsyncTask permite que podamos usar el tipo de datos que queramos tanto para \mintinline{kotlin}{Params}, \mintinline{kotlin}{Progress} o \mintinline{kotlin}{Result}, o ninguno rn caso de no necesitar algunos de ellos.
+
+Para el caso concreto de la aplicación, se han implementado varias tareas asíncronas. La primera de ellas, \mintinline{kotlin}{NetworkScan} (mostrada en parte en el Código \ref{code:networkScan}, sirve como base para definir diferentes tipos de escaneos, y en ella se implementa funcionalidad común para cualquier tipo de escaneo. Esta clase, como se muestra en CÓDIGO es abstracta y no puede ser instanciada.
+
+\begin{code}
+	\caption{Implementación de metodos de una AsyncTask en la clase NetworkScan}
+	\label{code:networkScan}
+	
+	\custominputminted{kotlin}{code/networkScan.kt}
+\end{code}
+
+Basándonos en \mintinline{kotlin}{NetworkScan}, la implementación más sencilla de un escaneo de una red está programada en la clase \mintinline{kotlin}{SequientialNetworkScan}. En esa clase, como se puede observar en el Código \ref{code:sequentialNetworkScan}, ya se implementan las llamadas a Nmap y el guardado en la base de datos. El nombre de la clase viene dado porque realiza el escaneo de manera secuencial, es decir, uno por uno.
+
+\begin{code}
+	\caption{Implementación de parte de la tarea asíncrona SequentialNetworkScan}
+	\label{code:sequentialNetworkScan}
+	
+	\customtinyinputminted{kotlin}{code/sequentialNetworkScan.kt}
+\end{code}
+
+También se puede observar que esta clase, al igual que la clase base, también es abstracta, ya que consiste en una implementación abstracta, únicamente con la lógica del escaneo de Nmap. Para poder realizar un escaneo, debemos implementar una subclase de ésta dentro de la vista (ya se Activity o Fragment) en la que queramos mostrar los datos. De esta manera, las particularidades de la vista y de cómo se cargan los datos en ella quedan relegados a código dentro de la vista, manteniendo el uso del patrón MVC. La implementación interna en una Activity quedaría como se muestra en el \ref{code:innerNetworkScan}, y, como se puede apreciar, solo contiene código relacionado con la interfaz de usuario.
+
+\begin{code}
+	\caption{Implementación de un NetworkScan dentro de un Activity}
+	\label{code:innerNetworkScan}
+	
+	\custominputminted{kotlin}{code/innerNetworkScan.kt}
+\end{code}
+
+Para lanzar una tarea asíncrona simplemente debemos, una vez construido el objeto, llamar al un método llamado \mintinline{kotlin}{Execute()}. Ejecución que solo se podrá realizar una vez para cada instancia, debido a las características internas de un AsyncTask, para evitar que una tarea ya realizada se vuelva a realizar.
+
+En conclusión, se ha desarrollado un modelo que permite, por una parte, separar la lógica de la interfaz gráfica y, por otra parte, disponer de una jerarquía extensible que permite realizar diferentes tipos de escaneos. Una jerarquía de clases que se pueden extender para realizar escaneos mediante otros métodos, como pueden ser ejecuciones en paralelo u otro tipo de implementaciones.
+
 
 \section{Interfaz gráfica}
 
