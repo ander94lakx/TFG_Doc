@@ -459,4 +459,94 @@ En conclusión, se ha desarrollado un modelo que permite, por una parte, separar
 
 \section{Interfaz gráfica}
 
+Ya se ha comentado en el capítulo anterior aspectos como las diferentes partes de la interfaz gráfica, la navegación entre ellas o los diferentes aspectos de Material Design implementados en el diseño de la interfaz.
 
+En esta parte no se pretende volver a repetir conceptos ya mencionados dicho capítulo, sino explicar cómo se han implementado conceptos sobre la interfaz gráfica, principalmente cómo interactúan las diferentes Activities con el sistema para obtener la información o cómo se realizan las transiciones entre unas y otras. También explicar cómo está implementado el patrón de diseño MVC, que Android permite integrar de una manera relativamente sencilla.
+
+\subsection{Ciclo de vida de Activities y Fragments}
+
+Ya se ha mencionado anteriormente lo que es un Activity lo que es un Fragment. A esas definiciones dadas cabe añadir que cada uno de ellos tiene un ciclo de vida concreto. Es decir, hay una serie de funciones, que se pueden implementar, que se ejecutan en cierto orden. Existen funciones que se ejecutan antes de mostrar el Activity o Fragment, otras al pausar ejecución del elemento u otras a la hora detener la ejecución, por poner unos ejemplos.
+
+Ambos ciclos de vida son similares, pero tienen particularidades concretas. Resulta necesario entender ese ciclo de vida, para entender cómo se han implementado ciertos aspectos de la aplicación.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{activity-lc}
+	\caption{Ciclo de vida de un Activity de Android}
+	\label{fig:activity-lc}
+\end{figure}
+
+Dentro del ciclo de vida de un Activity (ver \autoref{fig:activity-lc}), las funciones más importantes son \mintinline{kotlin}{onCreate()}, \mintinline{kotlin}{onResume()} y \mintinline{kotlin}{onPause()}. En la primera es donde se inicializan una serie de elementos para utilizar en nuestra Activity. En la segunda es donde se inicializan los elementos puntuales que no están disponibles todavía en la función \mintinline{kotlin}{onCreate()}, como ciertos elementos de la vista. La última de las tres nos permitirá guardar ciertos valores cuando, por ciertos motivos, la ejecución del Activity se pause. La ejecución se puede pausar por diversos motivos, como que el usuario haya salido de la aplicación, haya surgido un evento que haya lanzado otra Activity por encima, etc.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=\textheight]{fragment-lc}
+	\caption{Ciclo de vida de un Fragment de Android}
+	\label{fig:fragment-lc}
+\end{figure}
+
+El ciclo de vida de un Fragment (\autoref{fig:fragment-lc}) es parecido al ciclo de vida de una Activity, pero con ciertas particularidades. La principal, y la que más nos interesa, es la diferenciación entre \mintinline{kotlin}{onCreate()} y \mintinline{kotlin}{onCreateView()}. Una de las diferencias que existe, de manera similar a como ocurre con los Activities, en la primera función no tenemos acceso a elementos de la interfaz gráfica, mientras que en la segunda función sí. Por otro lado, debemos tener en cuenta que cuando se crea el Activity, se llama la función \mintinline{kotlin}{onCreate()}, pero no se llama la función \mintinline{kotlin}{onCreateView()} hasta que se muestra dicho Fragment. De la misma manera, cuando dejamos de mostrar un Fragment y volvemos a mostrarlo no se vuelve a llamar a la función \mintinline{kotlin}{onCreate()}, pero sí a \mintinline{kotlin}{onCreateView()}.
+
+\subsection{Navegación}
+
+Cómo se ha comentado, la aplicación arranca desde el Activity llamado MainActivity. Dentro de la clase del Activity, se encuentra una serie funcionalidades. En concreto, para poder cambiar entre los diferentes Fragments, lo que se hace es incrementar la función \mintinline{kotlin}{onNavigationItemSelected()}. Esta función que recibe el ítem que se ha pulsado, y en función de ese ítem sustituimos un Fragment por ptro, cómo se puede observar en el Código \ref{code:navSelection}.
+
+\begin{code}
+	\caption{Selección de un Fragment u otro en función del valor seleccionado en el Navbar}
+	\label{code:navSelection}
+	
+	\custominputminted{kotlin}{code/navSelection.kt}
+\end{code}
+
+Para lograr esto, se guarda una referencia cada uno de los Fragments dentro de la propia Activity, referencia que se inicializa al comienzo de la ejecución, cómo se puede observar en el Código \ref{code:fragmentsRef}.
+
+\begin{code}
+	\caption{Referencias a cada uno de los Fragments definidas dentro del MainActivity}
+	\label{code:fragmentsRef}
+	
+	\custominputminted{kotlin}{code/fragmentsRef.kt}
+\end{code}
+
+Algunos de estos Fragments permiten lanzar otras Activities. Para ello se detecta la pulsación de un evento concreto para lanzar una Activity u otra. En el Código \ref{code:fabLaunchScan} se muestra cómo se implementa el evento que detecta la pulsación del FAB y abre el Activity  que permite realizar el escaneo de una red.
+
+\begin{code}
+	\caption{Evento para lanzar una nueva Activity para escanear una red}
+	\label{code:fabLaunchScan}
+	
+	\custominputminted{kotlin}{code/fabLaunchScan.kt}
+\end{code}
+
+Lanzar un Activity es tan sencillo como invocar la función \mintinline{kotlin}{startActivity()}. Esta función recibirá un objeto de tipo \mintinline{kotlin}{Intent}. Este tipo de objetos son los que definen tanto que Activity se va a lanzar, como los diversos parámetros con los que se va a lanzar dicha Activity. De esta manera, antes de ejecutarla podremos pasar de ciertos parámetros para que a la hora de cargar el Activity se cargue de una u otra manera en función de esos parámetros.
+
+Según de qué Activity se trate, éste necesitará o no ciertos parámetros. Por poner un ejemplo, en el caso de un NodeListActivity, se mostrará una lista de nodos de un escaneo concreto. Por lo tanto, a la hora de ejecutar el Activity, necesitaremos recibir de qué escaneo se trata para obtener esos datos concretos.
+
+\begin{code}
+	\caption{Creación del NodeListActivity y recepción de parámetros}
+	\label{code:nodeListActivityOnCreate}
+	
+	\custominputminted{kotlin}{code/nodeListActivityOnCreate.kt}
+\end{code}
+
+Como se puede ver en el Código \ref{code:nodeListActivityOnCreate}, cuando se crea el Activity se evalúan los parámetros recibidos por el Intent, de tal manera que podamos cargar el Fragment que nos permite mostrar la lista de nodos pasándole como parámetro el ID y el nombre del escaneo en particular.
+
+El Fragment recibirá la información y, en función de ella, cargará a unos datos. En el Código \ref{code:nodeListFragment} se puede apreciar que existen dos funciones diferentes, la función \mintinline{kotlin}{onCreate()} y la función \mintinline{kotlin}{onCreateView()}. La primera se llama antes que la segunda, siguiendo el flujo de ejecución de un Fragment. En la primera recibimos los argumentos y en la segunda obtenemos los datos que queremos montar.
+
+\begin{code}
+	\caption{Creación del NodeListFragment y uso del RecyclerView}
+	\label{code:nodeListFragment}
+	
+	\custominputminted{kotlin}{code/nodeListFragment.kt}
+\end{code}
+
+En dicho código se usa un elemento llamado \mintinline{kotlin}{RecyclerView}. Este elemento es lo que dentro del patrón MVC denominamos como controlador. En este caso utilizamos el correspondiente a un nodo, llamado \mintinline{kotlin}{MyNodeRecyclerViewAdapter}. Esto nos permite, mediante los datos que hemos obtenido en las líneas anteriores (usando el \mintinline{kotlin}{nodeDao()}), cargar el adaptador que vuelca esos datos en elementos de la interfaz. Así, con unas pocas líneas de código, se recogen una serie de datos y se trasladan a la interfaz de una manera sencilla y automática.
+
+Examinando el código de \mintinline{kotlin}{MyNodeRecyclerViewAdapter} (Código \ref{code:nodeRecyclerView}), vemos que tenemos variables que almacenan los datos y una serie de funciones que simplemente en las otras dos elementos concretos de la interfaz gráfica, como pueden ser \textit{TextViews} en este caso.
+
+\begin{code}
+	\caption{Definición de un RecyclerView para usar con una lista de nodos}
+	\label{code:nodeRecyclerView}
+	
+	\custominputminted{kotlin}{code/nodeRecyclerView.kt}
+\end{code}
+
+De esta manera queda implementada el patrón MVC. Para resumir, tenemos las diferentes vistas implementadas en Activities o Fragments. Los motivos entre la elección de una u otra ya se ha comentado en el capítulo anterior. Por otra parte de los elementos del controlador están implementados en los que se denominan \mintinline{kotlin}{RecyclerView}, que como se ha podido apreciar, son clases que simplemente contienen los datos y los enlazan a ciertos campos del layout o interfaz gráfica de un Activity o Fragment. Por último, el modelo que se usa y ya se ha mencionado, consiste en una serie de clases que interactúan con la base de datos mediante el uso de Room, cómo se ha explicado anteriormente.
