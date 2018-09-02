@@ -62,9 +62,9 @@ Se puede elegir entre una de las cuatro opciones y la opción seleccionada se mo
 
 Como se ha mencionado, dentro de esas cuatro opciones, la que se muestra por defecto es \textbf{ScanListFragment}. Esta opción mostrará los diferentes escaneos realizados en una lista con una interfaz clara y simple, como se aprecia en la \autoref{fig:scanListFragment}.
 
-\begin{figure}[H] % TODO: Cambiar la imagen por la de verdad
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{placeholder}
+	\includegraphics[width=0.5\textwidth]{scanListFragment}
 	\caption{Diseño de ScanListFragment para mostrar los diferentes escaneos realizados}
 	\label{fig:scanListFragment}
 \end{figure}
@@ -77,9 +77,9 @@ Por lo tanto desde aquí tendremos dos opciones. La primera, pulsar sobre un esc
 
 En el propio diagrama se observa que, aunque cada una de esas dos opciones abren una Activity diferente, ambas van a representar su interfaz gráfica mediante el mismo Fragment, el \textbf{NodeListFragment}. Aquí es donde se nota el potencial de los Fragments, que nos permiten reutilizar implementación de la parte gráfica en diferentes puntos de la aplicación, como se muestra en la \autoref{fig:nodeListFragmentDifference}.
 
-\begin{figure}[H] % TODO: Cambiar la imagen por la de verdad
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{placeholder}
+	\includegraphics[width=\textwidth]{nodeListFragment}
 	\caption{Diferencia en NodeListFragment para un escaneo guardado y uno en curso}
 	\label{fig:nodeListFragmentDifference}
 \end{figure}
@@ -88,9 +88,9 @@ Tenemos que tener en cuenta que, en caso de hacer un escaneo de una red, aparte 
 
 Después (en ambas opciones), en caso de seleccionar un nodo concreto, se mostrará información sobre ese nodo, independientemente de que sea un escaneo ya guardado o el escaneo que acabamos de realizar. Para lograr esto, simplemente se enlaza a otra Activity llamada \textbf{NodeInfoActivity}, mostrada a continuación.
 
-\begin{figure}[H] % TODO: Cambiar la imagen por la de verdad
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{placeholder}
+	\includegraphics[width=0.5\textwidth]{nodeInfoActivity}
 	\caption{Diseño del NodeInfoActivity}
 	\label{fig:nodeInfoActivity}
 \end{figure}
@@ -101,27 +101,61 @@ En esta Activity se muestra la información obtenida. Información como la direc
 
 De esas opciones, la otra que también resulta de interés es la que podremos usar para analizar una dirección concreta, que se muestra en \autoref{fig:scanDirectionFragment} y está implementada en el Fragment \textbf{ScanDirectionFragment}.
 
-\begin{figure}[H] % TODO: Cambiar la imagen por la de verdad
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{placeholder}
+	\includegraphics[width=0.5\textwidth]{scanDirectionFragment}
 	\caption{Diseño del ScanDirectionFragment}
 	\label{fig:scanDirectionFragment}
 \end{figure}
 
 Una vez accedemos a él, vemos que su interfaz también es muy sencilla. Está compuesta solamente de tres elementos. El primero es un campo de texto donde podremos introducir la dirección IP o el dominio del nodo host que queramos analizar. El segundo nos permite elegir el modo de escaneo. Como se puede observar, tenemos cinco modos diferentes que influyen en la cantidad de información que podremos obtener. Obviamente, cuanto más exhaustivo sea el modo de escaneo, más tiempo va a tardar aplicación en analizar dicho nodo.
 
-Una vez terminado el escaneo del host se abrirá otra Activity, llamada DirectionScanActivity,  que nos muestra la información del host escaneado, como se puede ver en la \autoref{fig:directionScanActivity}. En este caso la información se muestra de manera diferente a la información de un nodo de una red. Tenemos otra vista, esta vez separada en diferentes pestañas. Estas tres pestañas contienen partes de la información obtenida.
+Una vez terminado el escaneo del host se abrirá otra Activity, llamada DirectionScanActivity,  que nos muestra la información del host escaneado, como se puede ver en la \autoref{fig:directionScanBasic} y en la \autoref{fig:directionScanServicesExtra}. En este caso la información se muestra de manera diferente a la información de un nodo de una red. Tenemos otra vista, esta vez separada en diferentes pestañas. Estas tres pestañas contienen partes de la información obtenida.
 
 La primera de ellas, implementada en el \textbf{BasicInfoFragment}, simplemente muestra información con la dirección IP y el nombre del dominio. La segunda, llamada \textbf{ServicesInfoFragment}, muestra la información de los diferentes servicios abiertos en dicho host. La tercera y última, llamada \textbf{ExtraInfoFragment}, muestra información extra, como por ejemplo el tiempo de escaneo o el número de host detectados.
 
-\begin{figure}[H] % TODO: Cambiar la imagen por la de verdad
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{placeholder}
-	\caption{Diseño del DirectionScanActivity y sus tres pestañas}
-	\label{fig:directionScanActivity}
+	\includegraphics[width=0.5\textwidth]{directionScanBasic}
+	\caption{Diseño del DirectionScanActivity y su pestaña con BasicInfoFragment}
+	\label{fig:directionScanBasic}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{directionScanServicesExtra}
+	\caption{Diseño del resto de pestañas del DirectionScanActivity}
+	\label{fig:directionScanServicesExtra}
 \end{figure}
 
 Cabe destacar que, por diversos motivos, se ha diferenciado entre la visualización de la información de un nodo de una red y la información de un host concreto que queramos analizar. El primero de ellos es que podemos tener diferentes objetivos a la hora de examinar los nodos que tenemos en nuestra red inalámbrica o examinar la información de un solo dominio. Al haber implementado la interfaz gráfica de manera diferente, podremos en un futuro ampliar la funcionalidad del escaneo del host para que muestre otros aspectos más complejos, sin con ello afectar a la información que se muestra de un nodo.
+
+\subsection{Ajustes}
+
+Por último se muestra un Activity especial para gestionar los ajustes de la aplicación, llamado \textbf{SettingsActivity}. Este se puede acceder desde el menú de tres puntos de la barra superior. Como se ve en la \autoref{fig:settings1}, se abrirá un menú contextual que permitirá acceder a los ajustes.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{settings1}
+	\caption{Menú contextual para acceder a los ajustes}
+	\label{fig:settings1}
+\end{figure}
+
+Tras abrirlo, se nos abrirá los ajustes, que contendrán varias categorías (\autoref{fig:settings2}). Dentro de esas categorías, se muestran diversos ajustes (\autoref{fig:settings3}) que permitirán modificar el comportamiento de la aplicación. Ajustes que cambiará valores que influirán en ciertas partes del desarrollo
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{settings2}
+	\caption{Diferentes categorías dentro de los ajustes}
+	\label{fig:settings2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{settings3}
+	\caption{Ajustes de la sección sobre los escaneos y Nmap}
+	\label{fig:settings3}
+\end{figure}
 
 \section{Aspectos gráficos de Material Design}
 
