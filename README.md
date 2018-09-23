@@ -1,2 +1,8 @@
-# TFG_Doc
-Informe del Trabajo de Fin de Grado
+# Final Year Project
+This Final Year Project of my Bachelor's Degree in Computer Engineering in Management and Information Systems is a project in two phases. The first one is a state of the art on one of the most interesting areas of computer science, as it is the computer security for, in the second phase, and after all that analysis, develop a small prototype, a proof of concept to solve a concrete problem. The application developed is called [NetScan](https://github.com/ander94lakx/NetScan), an Android application to scan networks and domains.
+
+# Gradu Amaierako Lana
+Gradu Amaierako Lan hau, Kudeaketaren eta Informazio Sistemen Informatikaren Ingeniaritzako Gradukoa, bi faseetan banatuta dagoen proiektu bat da. Lehenengoa Informatikaren arlo interesgarrienetariko bateko ikerketa bat da, Segurtasun Informatikoaren arloan, geroago, bigarren fasean, prototipo txiki bat garatzeko arlo horren barruan dauden arazoen baterako konponbide bat emateko. Inplementatu den aplikazioa [NetScan](https://github.com/ander94lakx/NetScan) deitzen da, eta ordenagaia saretik edo domeinutik informazioa ateratzeko Android aplikazio bat da.
+
+# Trabajo de Fin de Grado
+Este Trabajo de Fin de Grado, del Grado en Ingeniería Informática de Gestión y Sistemas de Información, consiste en un proyecto en dos fases. La primera un estado del arte sobre una de las áreas más interesantes de la informática, como lo es la seguridad informática para, en la segunda fase, y tras todo ese análisis realizado, elaborar un pequeño prototipo, una prueba de concepto para solucionar un problema concreto. La aplicación desarrollada se llama [NetScan](https://github.com/ander94lakx/NetScan), y consiste en una aplicación en Android para escanear redes y dominios.
